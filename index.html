@@ -1,12 +1,26 @@
 <!DOCTYPE html>
+<!-- ================================================================================================== -->
+<!--
+    This is the main HTML file for the WebAdmin AI Dashboard.
+    It contains the structure, styling, and JavaScript for the entire dashboard.
+    The dashboard is a single-page application, and all content is loaded from this file.
+-->
+<!-- ================================================================================================== -->
 <html class="dark" lang="es"><head>
+<!-- ================================================================================================== -->
+<!-- Head - Meta tags, styles, and scripts -->
+<!-- ================================================================================================== -->
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>WebAdmin AI Dashboard</title>
+<!-- Tailwind CSS -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
-<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {primary: "#000000", "primary-light-text": "#3B82F6", "primary-dark-text": "#60A5FA", "background-light": "#f7f7f7", "background-dark": "#191919", "light-highlight": "rgba(255, 255, 255, 0.7)", "light-shadow": "rgba(163, 177, 198, 0.5)", "dark-highlight": "rgba(53, 58, 67, 0.5)", "dark-shadow": "rgba(10, 10, 10, 0.5)", success: "#28A745", warning: "#FFC107", error: "#DC3545", info: "#17A2B8"}, fontFamily: {display: "Lexend"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}, boxShadow: {"neumorphic-light": "5px 5px 10px #d0d5db, -5px -5px 10px #ffffff", "neumorphic-dark": "7px 7px 14px #0a0a0a, -7px -7px 14px #282828", "neumorphic-light-inset": "inset 5px 5px 10px #d0d5db, inset -5px -5px 10px #ffffff", "neumorphic-dark-inset": "inset 7px 7px 14px #0a0a0a, inset -7px -7px 14px #282828", "neumorphic-light-hover": "8px 8px 16px #d0d5db, -8px -8px 16px #ffffff", "neumorphic-dark-hover": "10px 10px 20px #0a0a0a, -10px -10px 20px #282828"}}}};</script>
+<!-- Tailwind CSS Configuration -->
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {primary: "#3A86FF", "primary-light-text": "#8338EC", "primary-dark-text": "#FF006E", "background-light": "#f7f7f7", "background-dark": "#191919", "light-highlight": "rgba(255, 255, 255, 0.7)", "light-shadow": "rgba(163, 177, 198, 0.5)", "dark-highlight": "rgba(53, 58, 67, 0.5)", "dark-shadow": "rgba(10, 10, 10, 0.5)", success: "#20BF55", warning: "#FFBE0B", error: "#FB5607", info: "#00A8E8"}, fontFamily: {display: "Lexend"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}, boxShadow: {"neumorphic-light": "5px 5px 10px #d0d5db, -5px -5px 10px #ffffff", "neumorphic-dark": "7px 7px 14px #0a0a0a, -7px -7px 14px #282828", "neumorphic-light-inset": "inset 5px 5px 10px #d0d5db, inset -5px -5px 10px #ffffff", "neumorphic-dark-inset": "inset 7px 7px 14px #0a0a0a, inset -7px -7px 14px #282828", "neumorphic-light-hover": "8px 8px 16px #d0d5db, -8px -8px 16px #ffffff", "neumorphic-dark-hover": "10px 10px 20px #0a0a0a, -10px -10px 20px #282828"}}}};</script>
+<!-- Custom Styles -->
 <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -50,7 +64,10 @@
         }
     </style>
 </head>
-<body class="bg-background-light dark:bg-background-dark font-display text-gray-700 dark:text-gray-300">
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-700 dark:text-gray-300 bg-cover bg-center bg-no-repeat bg-fixed" style="background-image: url('images/background.jpg');">
+<!-- ================================================================================================== -->
+<!-- Main Content -->
+<!-- ================================================================================================== -->
 <div class="relative flex h-auto min-h-screen w-full group/design-root overflow-x-hidden">
 <div class="flex-1 flex flex-col">
 <div class="layout-container flex h-full grow flex-col">
@@ -68,9 +85,26 @@
 </div>
 <div class="flex items-center gap-2">
 <div class="hidden sm:flex flex-col items-end mr-2">
-<p class="text-sm font-semibold text-gray-800 dark:text-white">Buenos días, Luis Rivera</p>
+<p class="text-sm font-semibold text-gray-800 dark:text-white" data-translate="welcome_message">Buenos días, Luis Rivera</p>
 <p class="text-xs text-gray-500 dark:text-gray-400" id="current-time"></p>
 </div>
+<!-- Language Selector -->
+<div class="relative dropdown">
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 w-10 bg-background-light dark:bg-background-dark text-gray-600 dark:text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-300">
+<span class="material-symbols-outlined">language</span>
+</button>
+<div class="dropdown-menu absolute right-0 mt-2 w-40 bg-background-light dark:bg-background-dark rounded-xl shadow-neumorphic-light dark:shadow-neumorphic-dark hidden z-20 overflow-hidden">
+<a class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-light-shadow/20 dark:hover:bg-dark-highlight/40" href="#" onclick="changeLanguage('es')">
+<span>🇪🇸</span>
+<span>Español</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-light-shadow/20 dark:hover:bg-dark-highlight/40" href="#" onclick="changeLanguage('en')">
+<span>🇺🇸</span>
+<span>English</span>
+</a>
+</div>
+</div>
+<!-- Theme Selector -->
 <div class="relative dropdown">
 <button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 w-10 bg-background-light dark:bg-background-dark text-gray-600 dark:text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-300">
 <span class="material-symbols-outlined">contrast</span>
@@ -78,15 +112,15 @@
 <div class="dropdown-menu absolute right-0 mt-2 w-40 bg-background-light dark:bg-background-dark rounded-xl shadow-neumorphic-light dark:shadow-neumorphic-dark hidden z-20 overflow-hidden">
 <a class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-light-shadow/20 dark:hover:bg-dark-highlight/40" href="#">
 <span class="material-symbols-outlined !text-xl">dark_mode</span>
-<span>Oscuro</span>
+<span data-translate="theme_dark">Oscuro</span>
 </a>
 <a class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-light-shadow/20 dark:hover:bg-dark-highlight/40" href="#">
 <span class="material-symbols-outlined !text-xl">light_mode</span>
-<span>Claro</span>
+<span data-translate="theme_light">Claro</span>
 </a>
 <a class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-light-shadow/20 dark:hover:bg-dark-highlight/40" href="#">
 <span class="material-symbols-outlined !text-xl">desktop_windows</span>
-<span>Sistema</span>
+<span data-translate="theme_system">Sistema</span>
 </a>
 </div>
 </div>
@@ -103,23 +137,23 @@
 <div class="bg-background-light dark:bg-background-dark rounded-full shadow-neumorphic-light dark:shadow-neumorphic-dark flex items-center justify-center sm:justify-start gap-1 p-1.5">
 <a class="relative flex items-center gap-2 px-4 py-2 text-sm font-semibold transition-all duration-300 group rounded-full bg-primary shadow-neumorphic-light-inset dark:shadow-neumorphic-dark-inset text-white" href="#">
 <span class="material-symbols-outlined !text-xl">web</span>
-<span>Sitios Web</span>
+<span data-translate="nav_websites">Sitios Web</span>
 </a>
 <a class="relative flex items-center gap-2 px-4 py-2 text-sm font-medium transition-all duration-300 group text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-background-light dark:hover:bg-background-dark hover:shadow-neumorphic-light dark:hover:shadow-neumorphic-dark rounded-full active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset scale-100 hover:scale-95 active:scale-90" href="#">
 <span class="material-symbols-outlined !text-xl">database</span>
-<span>Bases de Datos</span>
+<span data-translate="nav_databases">Bases de Datos</span>
 </a>
 <a class="relative flex items-center gap-2 px-4 py-2 text-sm font-medium transition-all duration-300 group text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-background-light dark:hover:bg-background-dark hover:shadow-neumorphic-light dark:hover:shadow-neumorphic-dark rounded-full active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset scale-100 hover:scale-95 active:scale-90" href="#">
 <span class="material-symbols-outlined !text-xl">psychology</span>
-<span>Área de IA</span>
+<span data-translate="nav_ai_area">Área de IA</span>
 </a>
 <a class="relative flex items-center gap-2 px-4 py-2 text-sm font-medium transition-all duration-300 group text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-background-light dark:hover:bg-background-dark hover:shadow-neumorphic-light dark:hover:shadow-neumorphic-dark rounded-full active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset scale-100 hover:scale-95 active:scale-90" href="#">
 <span class="material-symbols-outlined !text-xl">auto_awesome</span>
-<span>Páginas IA</span>
+<span data-translate="nav_ai_pages">Páginas IA</span>
 </a>
 <a class="relative flex items-center gap-2 px-4 py-2 text-sm font-medium transition-all duration-300 group text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-background-light dark:hover:bg-background-dark hover:shadow-neumorphic-light dark:hover:shadow-neumorphic-dark rounded-full active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset scale-100 hover:scale-95 active:scale-90" href="#">
 <span class="material-symbols-outlined !text-xl">sync</span>
-<span>Workflows</span>
+<span data-translate="nav_workflows">Workflows</span>
 </a>
 </div>
 </nav>
@@ -129,8 +163,8 @@
 <main class="flex-1">
 <div class="flex flex-wrap justify-between gap-3 p-4 sm:p-6 pt-8">
 <div class="flex min-w-72 flex-col gap-2">
-<h2 class="text-gray-900 dark:text-white text-3xl font-black leading-tight tracking-[-0.03em]">Dashboard de Administración</h2>
-<p class="text-gray-500 dark:text-gray-400 text-base font-normal leading-relaxed">Gestiona tus sitios, bases de datos y workflows desde un solo lugar.</p>
+<h2 class="text-gray-900 dark:text-white text-3xl font-black leading-tight tracking-[-0.03em]" data-translate="main_title">Dashboard de Administración</h2>
+<p class="text-gray-500 dark:text-gray-400 text-base font-normal leading-relaxed" data-translate="main_subtitle">Gestiona tus sitios, bases de datos y workflows desde un solo lugar.</p>
 </div>
 </div>
 <!-- ================================================================================================== -->
@@ -140,22 +174,23 @@
 <div class="relative bg-background-light dark:bg-background-dark backdrop-blur-xl rounded-xl p-6 shadow-neumorphic-light dark:shadow-neumorphic-dark">
 <div class="flex flex-wrap justify-between items-start gap-6 mb-6">
 <div class="flex items-center gap-4">
-<h3 class="text-gray-900 dark:text-white text-xl font-bold leading-tight tracking-[-0.015em]">Consumo de Recursos</h3>
+<h3 class="text-gray-900 dark:text-white text-xl font-bold leading-tight tracking-[-0.015em]" data-translate="resource_consumption_title">Consumo de Recursos</h3>
 <div class="flex items-center gap-2">
 <span class="relative flex h-3 w-3">
 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-success opacity-75"></span>
 <span class="relative inline-flex rounded-full h-3 w-3 bg-success"></span>
 </span>
-<span class="text-sm font-medium text-success">Online</span>
+<span class="text-sm font-medium text-success" data-translate="resource_consumption_online">Online</span>
 </div>
 </div>
 <div class="flex items-center flex-wrap gap-3">
-<button class="flex items-center justify-center h-10 px-4 rounded-lg bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-sm font-semibold shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-2"><span class="material-symbols-outlined !text-xl text-primary-light-text dark:text-primary-dark-text">restart_alt</span>Reiniciar</button>
-<button class="flex items-center justify-center h-10 px-4 rounded-lg bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-sm font-semibold shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-2"><span class="material-symbols-outlined !text-xl text-error">power_settings_new</span>Apagar</button>
-<button class="flex items-center justify-center h-10 px-4 rounded-lg bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-sm font-semibold shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-2"><span class="material-symbols-outlined !text-xl text-warning">photo_camera</span>Snapshot</button>
+<button class="flex items-center justify-center h-10 px-4 rounded-lg bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-sm font-semibold shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-2"><span class="material-symbols-outlined !text-xl text-primary-light-text dark:text-primary-dark-text">restart_alt</span><span data-translate="resource_consumption_restart">Reiniciar</span></button>
+<button class="flex items-center justify-center h-10 px-4 rounded-lg bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-sm font-semibold shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-2"><span class="material-symbols-outlined !text-xl text-error">power_settings_new</span><span data-translate="resource_consumption_shutdown">Apagar</span></button>
+<button class="flex items-center justify-center h-10 px-4 rounded-lg bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-sm font-semibold shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-2"><span class="material-symbols-outlined !text-xl text-warning">photo_camera</span><span data-translate="resource_consumption_snapshot">Snapshot</span></button>
 </div>
 </div>
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- RAM -->
 <div class="flex flex-col items-center gap-3">
 <div class="relative size-32">
 <svg class="absolute inset-0 size-full" height="120" viewBox="0 0 120 120" width="120">
@@ -166,8 +201,9 @@
 <span class="material-symbols-outlined text-primary-light-text dark:text-primary-dark-text !text-4xl">memory</span>
 </div>
 </div>
-<div class="text-center"><p class="font-semibold text-gray-800 dark:text-gray-100">RAM</p><p class="text-sm font-bold text-gray-800 dark:text-white">75%</p><p class="text-xs text-gray-500 dark:text-gray-400">12GB / 16GB</p></div>
+<div class="text-center"><p class="font-semibold text-gray-800 dark:text-gray-100" data-translate="resource_consumption_ram">RAM</p><p class="text-sm font-bold text-gray-800 dark:text-white">75%</p><p class="text-xs text-gray-500 dark:text-gray-400">12GB / 16GB</p></div>
 </div>
+<!-- CPU -->
 <div class="flex flex-col items-center gap-3">
 <div class="relative size-32">
 <svg class="absolute inset-0 size-full" height="120" viewBox="0 0 120 120" width="120">
@@ -178,8 +214,9 @@
 <span class="material-symbols-outlined text-warning !text-4xl">developer_board</span>
 </div>
 </div>
-<div class="text-center"><p class="font-semibold text-gray-800 dark:text-gray-100">CPU</p><p class="text-sm font-bold text-gray-800 dark:text-white">42%</p><p class="text-xs text-gray-500 dark:text-gray-400">2.4GHz / 4.8GHz</p></div>
+<div class="text-center"><p class="font-semibold text-gray-800 dark:text-gray-100" data-translate="resource_consumption_cpu">CPU</p><p class="text-sm font-bold text-gray-800 dark:text-white">42%</p><p class="text-xs text-gray-500 dark:text-gray-400">2.4GHz / 4.8GHz</p></div>
 </div>
+<!-- SSD -->
 <div class="flex flex-col items-center gap-3">
 <div class="relative size-32">
 <svg class="absolute inset-0 size-full" height="120" viewBox="0 0 120 120" width="120">
@@ -190,8 +227,9 @@
 <span class="material-symbols-outlined text-success !text-4xl">save</span>
 </div>
 </div>
-<div class="text-center"><p class="font-semibold text-gray-800 dark:text-gray-100">SSD</p><p class="text-sm font-bold text-gray-800 dark:text-white">85%</p><p class="text-xs text-gray-500 dark:text-gray-400">850GB / 1TB</p></div>
+<div class="text-center"><p class="font-semibold text-gray-800 dark:text-gray-100" data-translate="resource_consumption_ssd">SSD</p><p class="text-sm font-bold text-gray-800 dark:text-white">85%</p><p class="text-xs text-gray-500 dark:text-gray-400">850GB / 1TB</p></div>
 </div>
+<!-- Ethernet -->
 <div class="flex flex-col items-center gap-3">
 <div class="relative size-32">
 <svg class="absolute inset-0 size-full" height="120" viewBox="0 0 120 120" width="120">
@@ -202,7 +240,7 @@
 <span class="material-symbols-outlined text-info !text-4xl">lan</span>
 </div>
 </div>
-<div class="text-center"><p class="font-semibold text-gray-800 dark:text-gray-100">Ethernet</p><p class="text-sm font-bold text-gray-800 dark:text-white">60%</p><p class="text-xs text-gray-500 dark:text-gray-400">600Mbps</p></div>
+<div class="text-center"><p class="font-semibold text-gray-800 dark:text-gray-100" data-translate="resource_consumption_ethernet">Ethernet</p><p class="text-sm font-bold text-gray-800 dark:text-white">60%</p><p class="text-xs text-gray-500 dark:text-gray-400">600Mbps</p></div>
 </div>
 </div>
 </div>
@@ -213,10 +251,10 @@
 <div class="p-4 sm:p-6">
 <div class="relative bg-background-light dark:bg-background-dark backdrop-blur-xl rounded-xl p-6 shadow-neumorphic-light dark:shadow-neumorphic-dark">
 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
-<h3 class="text-gray-900 dark:text-white text-xl font-bold leading-tight tracking-[-0.015em]">Mis Sitios Web</h3>
+<h3 class="text-gray-900 dark:text-white text-xl font-bold leading-tight tracking-[-0.015em]" data-translate="my_websites_title">Mis Sitios Web</h3>
 <button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white gap-2 pl-3 text-sm font-bold leading-normal tracking-[0.015em] w-full sm:w-auto shadow-md hover:shadow-lg hover:scale-95 active:shadow-inner active:scale-90 transition-all duration-300">
 <span class="material-symbols-outlined">add</span>
-<span class="truncate">Añadir Nuevo Sitio Web</span>
+<span class="truncate" data-translate="my_websites_add_new">Añadir Nuevo Sitio Web</span>
 </button>
 </div>
 <div class="@container">
@@ -224,58 +262,61 @@
 <table class="w-full text-left">
 <thead>
 <tr class="bg-light-highlight/20 dark:bg-dark-highlight/20">
-<th class="px-4 py-3 text-left text-gray-600 dark:text-gray-300 w-[25%] text-sm font-semibold tracking-wide">Nombre del Sitio</th>
-<th class="px-4 py-3 text-left text-gray-600 dark:text-gray-300 w-[25%] text-sm font-semibold tracking-wide">URL</th>
-<th class="px-4 py-3 text-center text-gray-600 dark:text-gray-300 w-[15%] text-sm font-semibold tracking-wide">Estado</th>
-<th class="px-4 py-3 text-left text-gray-600 dark:text-gray-300 w-[35%] text-sm font-semibold tracking-wide">Acciones</th>
+<th class="px-4 py-3 text-left text-gray-600 dark:text-gray-300 w-[25%] text-sm font-semibold tracking-wide" data-translate="my_websites_table_name">Nombre del Sitio</th>
+<th class="px-4 py-3 text-left text-gray-600 dark:text-gray-300 w-[25%] text-sm font-semibold tracking-wide" data-translate="my_websites_table_url">URL</th>
+<th class="px-4 py-3 text-center text-gray-600 dark:text-gray-300 w-[15%] text-sm font-semibold tracking-wide" data-translate="my_websites_table_status">Estado</th>
+<th class="px-4 py-3 text-left text-gray-600 dark:text-gray-300 w-[35%] text-sm font-semibold tracking-wide" data-translate="my_websites_table_actions">Acciones</th>
 </tr>
 </thead>
 <tbody>
+<!-- Website 1 -->
 <tr class="border-t border-light-shadow/30 dark:border-dark-highlight/50">
-<td class="h-auto px-4 py-3 text-gray-800 dark:text-gray-100 text-sm font-medium leading-normal">Sitio Corporativo Principal</td>
+<td class="h-auto px-4 py-3 text-gray-800 dark:text-gray-100 text-sm font-medium leading-normal" data-translate="my_websites_site_1_name">Sitio Corporativo Principal</td>
 <td class="h-auto px-4 py-3 text-gray-500 dark:text-gray-400 text-sm font-normal leading-normal">www.miempresa.com</td>
 <td class="h-auto px-4 py-3 text-center">
 <span class="inline-flex items-center gap-1.5 rounded-full bg-success/10 px-3 py-1 text-xs font-medium text-success">
-<span class="size-2 rounded-full bg-success"></span>Activo
+<span class="size-2 rounded-full bg-success"></span><span data-translate="my_websites_site_status_active">Activo</span>
 </span>
 </td>
 <td class="h-auto px-4 py-3">
 <div class="flex items-center flex-wrap gap-2">
-<button class="flex items-center justify-center h-8 px-2.5 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-1.5"><span class="material-symbols-outlined !text-base">visibility</span>Ver</button>
-<button class="flex items-center justify-center h-8 px-2.5 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-1.5"><span class="material-symbols-outlined !text-base">edit</span>Editar</button>
-<button class="flex items-center justify-center h-8 px-2.5 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-1.5"><span class="material-symbols-outlined !text-base">download</span>Descargar</button>
+<button class="flex items-center justify-center h-8 px-2.5 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-1.5"><span class="material-symbols-outlined !text-base">visibility</span><span data-translate="my_websites_action_view">Ver</span></button>
+<button class="flex items-center justify-center h-8 px-2.5 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-1.5"><span class="material-symbols-outlined !text-base">edit</span><span data-translate="my_websites_action_edit">Editar</span></button>
+<button class="flex items-center justify-center h-8 px-2.5 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-1.5"><span class="material-symbols-outlined !text-base">download</span><span data-translate="my_websites_action_download">Descargar</span></button>
 </div>
 </td>
 </tr>
+<!-- Website 2 -->
 <tr class="border-t border-light-shadow/30 dark:border-dark-highlight/50">
-<td class="h-auto px-4 py-3 text-gray-800 dark:text-gray-100 text-sm font-medium leading-normal">Blog de Contenidos</td>
+<td class="h-auto px-4 py-3 text-gray-800 dark:text-gray-100 text-sm font-medium leading-normal" data-translate="my_websites_site_2_name">Blog de Contenidos</td>
 <td class="h-auto px-4 py-3 text-gray-500 dark:text-gray-400 text-sm font-normal leading-normal">blog.miempresa.com</td>
 <td class="h-auto px-4 py-3 text-center">
 <span class="inline-flex items-center gap-1.5 rounded-full bg-success/10 px-3 py-1 text-xs font-medium text-success">
-<span class="size-2 rounded-full bg-success"></span>Activo
+<span class="size-2 rounded-full bg-success"></span><span data-translate="my_websites_site_status_active">Activo</span>
 </span>
 </td>
 <td class="h-auto px-4 py-3">
 <div class="flex items-center flex-wrap gap-2">
-<button class="flex items-center justify-center h-8 px-2.5 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-1.5"><span class="material-symbols-outlined !text-base">visibility</span>Ver</button>
-<button class="flex items-center justify-center h-8 px-2.5 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-1.5"><span class="material-symbols-outlined !text-base">edit</span>Editar</button>
-<button class="flex items-center justify-center h-8 px-2.5 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-1.5"><span class="material-symbols-outlined !text-base">download</span>Descargar</button>
+<button class="flex items-center justify-center h-8 px-2.5 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-1.5"><span class="material-symbols-outlined !text-base">visibility</span><span data-translate="my_websites_action_view">Ver</span></button>
+<button class="flex items-center justify-center h-8 px-2.5 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-1.5"><span class="material-symbols-outlined !text-base">edit</span><span data-translate="my_websites_action_edit">Editar</span></button>
+<button class="flex items-center justify-center h-8 px-2.5 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-1.5"><span class="material-symbols-outlined !text-base">download</span><span data-translate="my_websites_action_download">Descargar</span></button>
 </div>
 </td>
 </tr>
+<!-- Website 3 -->
 <tr class="border-t border-light-shadow/30 dark:border-dark-highlight/50">
-<td class="h-auto px-4 py-3 text-gray-800 dark:text-gray-100 text-sm font-medium leading-normal">Plataforma E-commerce</td>
+<td class="h-auto px-4 py-3 text-gray-800 dark:text-gray-100 text-sm font-medium leading-normal" data-translate="my_websites_site_3_name">Plataforma E-commerce</td>
 <td class="h-auto px-4 py-3 text-gray-500 dark:text-gray-400 text-sm font-normal leading-normal">tienda.miempresa.com</td>
 <td class="h-auto px-4 py-3 text-center">
 <span class="inline-flex items-center gap-1.5 rounded-full bg-error/10 px-3 py-1 text-xs font-medium text-error">
-<span class="size-2 rounded-full bg-error"></span>Inactivo
+<span class="size-2 rounded-full bg-error"></span><span data-translate="my_websites_site_status_inactive">Inactivo</span>
 </span>
 </td>
 <td class="h-auto px-4 py-3">
 <div class="flex items-center flex-wrap gap-2">
-<button class="flex items-center justify-center h-8 px-2.5 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-1.5"><span class="material-symbols-outlined !text-base">visibility</span>Ver</button>
-<button class="flex items-center justify-center h-8 px-2.5 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-1.5"><span class="material-symbols-outlined !text-base">edit</span>Editar</button>
-<button class="flex items-center justify-center h-8 px-2.5 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-1.5"><span class="material-symbols-outlined !text-base">download</span>Descargar</button>
+<button class="flex items-center justify-center h-8 px-2.5 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-1.5"><span class="material-symbols-outlined !text-base">visibility</span><span data-translate="my_websites_action_view">Ver</span></button>
+<button class="flex items-center justify-center h-8 px-2.5 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-1.5"><span class="material-symbols-outlined !text-base">edit</span><span data-translate="my_websites_action_edit">Editar</span></button>
+<button class="flex items-center justify-center h-8 px-2.5 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-1.5"><span class="material-symbols-outlined !text-base">download</span><span data-translate="my_websites_action_download">Descargar</span></button>
 </div>
 </td>
 </tr>
@@ -290,42 +331,44 @@
 <!-- ================================================================================================== -->
 <div class="p-4 sm:p-6">
 <div class="relative bg-background-light dark:bg-background-dark backdrop-blur-xl rounded-xl p-6 shadow-neumorphic-light dark:shadow-neumorphic-dark">
-<h3 class="text-gray-900 dark:text-white text-xl font-bold leading-tight tracking-[-0.015em] mb-6">Gestión de Bases de Datos</h3>
+<h3 class="text-gray-900 dark:text-white text-xl font-bold leading-tight tracking-[-0.015em] mb-6" data-translate="db_management_title">Gestión de Bases de Datos</h3>
 <div class="@container">
 <div class="overflow-x-auto">
 <table class="w-full text-left">
 <thead>
 <tr class="bg-light-highlight/20 dark:bg-dark-highlight/20">
-<th class="px-4 py-3 text-left text-gray-600 dark:text-gray-300 text-sm font-semibold tracking-wide">Nombre de la Base de Datos</th>
-<th class="px-4 py-3 text-left text-gray-600 dark:text-gray-300 text-sm font-semibold tracking-wide">Sitio Web</th>
-<th class="px-4 py-3 text-left text-gray-600 dark:text-gray-300 text-sm font-semibold tracking-wide">Última Copia de Seguridad</th>
-<th class="px-4 py-3 text-left text-gray-600 dark:text-gray-300 text-sm font-semibold tracking-wide">Acciones</th>
+<th class="px-4 py-3 text-left text-gray-600 dark:text-gray-300 text-sm font-semibold tracking-wide" data-translate="db_management_table_name">Nombre de la Base de Datos</th>
+<th class="px-4 py-3 text-left text-gray-600 dark:text-gray-300 text-sm font-semibold tracking-wide" data-translate="db_management_table_website">Sitio Web</th>
+<th class="px-4 py-3 text-left text-gray-600 dark:text-gray-300 text-sm font-semibold tracking-wide" data-translate="db_management_table_last_backup">Última Copia de Seguridad</th>
+<th class="px-4 py-3 text-left text-gray-600 dark:text-gray-300 text-sm font-semibold tracking-wide" data-translate="db_management_table_actions">Acciones</th>
 </tr>
 </thead>
 <tbody>
+<!-- Database 1 -->
 <tr class="border-t border-light-shadow/30 dark:border-dark-highlight/50">
 <td class="h-auto px-4 py-3 text-gray-800 dark:text-gray-100 text-sm font-medium">corp_db_prod</td>
-<td class="h-auto px-4 py-3 text-gray-500 dark:text-gray-400 text-sm">Sitio Corporativo</td>
+<td class="h-auto px-4 py-3 text-gray-500 dark:text-gray-400 text-sm" data-translate="db_management_db_1_website">Sitio Corporativo</td>
 <td class="h-auto px-4 py-3 text-gray-500 dark:text-gray-400 text-sm">2023-10-27 03:00</td>
 <td class="h-auto px-4 py-3 text-gray-500 dark:text-gray-400 text-sm">
 <div class="flex items-center flex-wrap gap-2">
-<button class="flex items-center justify-center h-8 px-3 rounded-md bg-sky-500/20 text-sky-600 dark:text-sky-300 text-xs font-bold shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-1.5"><span class="material-symbols-outlined !text-base">code</span>Consulta</button>
-<button class="flex items-center justify-center h-8 px-3 rounded-md bg-teal-500/20 text-teal-600 dark:text-teal-300 text-xs font-bold shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-1.5"><span class="material-symbols-outlined !text-base">backup</span>Copiar BD</button>
-<button class="flex items-center justify-center h-8 px-3 rounded-md bg-indigo-500/20 text-indigo-600 dark:text-indigo-300 text-xs font-bold shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-1.5"><span class="material-symbols-outlined !text-base">download</span>Backup</button>
-<button class="flex items-center justify-center h-8 px-3 rounded-md bg-slate-500/20 text-slate-600 dark:text-slate-300 text-xs font-bold shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-1.5"><span class="material-symbols-outlined !text-base">settings</span>Configurar</button>
+<button class="flex items-center justify-center h-8 px-3 rounded-md bg-sky-500/20 text-sky-600 dark:text-sky-300 text-xs font-bold shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-1.5"><span class="material-symbols-outlined !text-base">code</span><span data-translate="db_management_action_query">Consulta</span></button>
+<button class="flex items-center justify-center h-8 px-3 rounded-md bg-teal-500/20 text-teal-600 dark:text-teal-300 text-xs font-bold shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-1.5"><span class="material-symbols-outlined !text-base">backup</span><span data-translate="db_management_action_copy">Copiar BD</span></button>
+<button class="flex items-center justify-center h-8 px-3 rounded-md bg-indigo-500/20 text-indigo-600 dark:text-indigo-300 text-xs font-bold shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-1.5"><span class="material-symbols-outlined !text-base">download</span><span data-translate="db_management_action_backup">Backup</span></button>
+<button class="flex items-center justify-center h-8 px-3 rounded-md bg-slate-500/20 text-slate-600 dark:text-slate-300 text-xs font-bold shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-1.5"><span class="material-symbols-outlined !text-base">settings</span><span data-translate="db_management_action_configure">Configurar</span></button>
 </div>
 </td>
 </tr>
+<!-- Database 2 -->
 <tr class="border-t border-light-shadow/30 dark:border-dark-highlight/50">
 <td class="h-auto px-4 py-3 text-gray-800 dark:text-gray-100 text-sm font-medium">blog_cms_db</td>
-<td class="h-auto px-4 py-3 text-gray-500 dark:text-gray-400 text-sm">Blog de Contenidos</td>
+<td class="h-auto px-4 py-3 text-gray-500 dark:text-gray-400 text-sm" data-translate="db_management_db_2_website">Blog de Contenidos</td>
 <td class="h-auto px-4 py-3 text-gray-500 dark:text-gray-400 text-sm">2023-10-27 03:00</td>
 <td class="h-auto px-4 py-3 text-gray-500 dark:text-gray-400 text-sm">
 <div class="flex items-center flex-wrap gap-2">
-<button class="flex items-center justify-center h-8 px-3 rounded-md bg-sky-500/20 text-sky-600 dark:text-sky-300 text-xs font-bold shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-1.5"><span class="material-symbols-outlined !text-base">code</span>Consulta</button>
-<button class="flex items-center justify-center h-8 px-3 rounded-md bg-teal-500/20 text-teal-600 dark:text-teal-300 text-xs font-bold shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-1.5"><span class="material-symbols-outlined !text-base">backup</span>Copiar BD</button>
-<button class="flex items-center justify-center h-8 px-3 rounded-md bg-indigo-500/20 text-indigo-600 dark:text-indigo-300 text-xs font-bold shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-1.5"><span class="material-symbols-outlined !text-base">download</span>Backup</button>
-<button class="flex items-center justify-center h-8 px-3 rounded-md bg-slate-500/20 text-slate-600 dark:text-slate-300 text-xs font-bold shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-1.5"><span class="material-symbols-outlined !text-base">settings</span>Configurar</button>
+<button class="flex items-center justify-center h-8 px-3 rounded-md bg-sky-500/20 text-sky-600 dark:text-sky-300 text-xs font-bold shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-1.5"><span class="material-symbols-outlined !text-base">code</span><span data-translate="db_management_action_query">Consulta</span></button>
+<button class="flex items-center justify-center h-8 px-3 rounded-md bg-teal-500/20 text-teal-600 dark:text-teal-300 text-xs font-bold shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-1.5"><span class="material-symbols-outlined !text-base">backup</span><span data-translate="db_management_action_copy">Copiar BD</span></button>
+<button class="flex items-center justify-center h-8 px-3 rounded-md bg-indigo-500/20 text-indigo-600 dark:text-indigo-300 text-xs font-bold shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-1.5"><span class="material-symbols-outlined !text-base">download</span><span data-translate="db_management_action_backup">Backup</span></button>
+<button class="flex items-center justify-center h-8 px-3 rounded-md bg-slate-500/20 text-slate-600 dark:text-slate-300 text-xs font-bold shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-1.5"><span class="material-symbols-outlined !text-base">settings</span><span data-translate="db_management_action_configure">Configurar</span></button>
 </div>
 </td>
 </tr>
@@ -340,40 +383,40 @@
 <!-- ================================================================================================== -->
 <div class="p-4 sm:p-6">
 <div class="relative bg-background-light dark:bg-background-dark backdrop-blur-xl rounded-xl p-6 shadow-neumorphic-light dark:shadow-neumorphic-dark">
-<h3 class="text-gray-900 dark:text-white text-xl font-bold leading-tight tracking-[-0.015em] mb-6">Área de IA con RAG y Finetuning</h3>
+<h3 class="text-gray-900 dark:text-white text-xl font-bold leading-tight tracking-[-0.015em] mb-6" data-translate="ai_area_title">Área de IA con RAG y Finetuning</h3>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 <div class="flex items-center justify-between p-4 bg-background-light dark:bg-background-dark rounded-lg shadow-neumorphic-light dark:shadow-neumorphic-dark">
 <div class="flex items-center gap-3">
 <span class="material-symbols-outlined text-primary-light-text dark:text-primary-dark-text text-2xl">model_training</span>
 <div>
-<p class="font-medium text-gray-800 dark:text-white">Modelo RAG</p>
+<p class="font-medium text-gray-800 dark:text-white" data-translate="ai_area_rag_model">Modelo RAG</p>
 <div class="flex items-center gap-2 mt-1">
 <span class="inline-flex items-center gap-1.5 rounded-full bg-success/10 px-3 py-1 text-xs font-medium text-success">
-<span class="size-2 rounded-full bg-success"></span>Activo
+<span class="size-2 rounded-full bg-success"></span><span data-translate="ai_area_status_active">Activo</span>
                                                         </span>
 </div>
 </div>
 </div>
 <div class="flex items-center gap-2">
-<button class="text-primary-light-text dark:text-primary-dark-text hover:underline text-sm font-bold">Ver Logs</button>
-<button class="text-primary-light-text dark:text-primary-dark-text hover:underline text-sm font-bold">Configurar</button>
+<button class="text-primary-light-text dark:text-primary-dark-text hover:underline text-sm font-bold" data-translate="ai_area_action_view_logs">Ver Logs</button>
+<button class="text-primary-light-text dark:text-primary-dark-text hover:underline text-sm font-bold" data-translate="ai_area_action_configure">Configurar</button>
 </div>
 </div>
 <div class="flex items-center justify-between p-4 bg-background-light dark:bg-background-dark rounded-lg shadow-neumorphic-light dark:shadow-neumorphic-dark">
 <div class="flex items-center gap-3">
 <span class="material-symbols-outlined text-primary-light-text dark:text-primary-dark-text text-2xl">psychology</span>
 <div>
-<p class="font-medium text-gray-800 dark:text-white">Modelo Finetuning</p>
+<p class="font-medium text-gray-800 dark:text-white" data-translate="ai_area_finetuning_model">Modelo Finetuning</p>
 <div class="flex items-center gap-2 mt-1">
 <span class="inline-flex items-center gap-1.5 rounded-full bg-warning/10 px-3 py-1 text-xs font-medium text-warning">
-<span class="size-2 rounded-full bg-warning"></span>Entrenando
+<span class="size-2 rounded-full bg-warning"></span><span data-translate="ai_area_status_training">Entrenando</span>
                                                         </span>
 </div>
 </div>
 </div>
 <div class="flex items-center gap-2">
-<button class="text-primary-light-text dark:text-primary-dark-text hover:underline text-sm font-bold">Ver Logs</button>
-<button class="text-primary-light-text dark:text-primary-dark-text hover:underline text-sm font-bold">Configurar</button>
+<button class="text-primary-light-text dark:text-primary-dark-text hover:underline text-sm font-bold" data-translate="ai_area_action_view_logs">Ver Logs</button>
+<button class="text-primary-light-text dark:text-primary-dark-text hover:underline text-sm font-bold" data-translate="ai_area_action_configure">Configurar</button>
 </div>
 </div>
 </div>
@@ -385,44 +428,44 @@
 <div class="p-4 sm:p-6">
 <div class="relative bg-background-light dark:bg-background-dark backdrop-blur-xl rounded-xl p-6 shadow-neumorphic-light dark:shadow-neumorphic-dark">
 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
-<h3 class="text-gray-900 dark:text-white text-xl font-bold leading-tight tracking-[-0.015em]">Páginas Creadas por IA (OpenWebUI)</h3>
+<h3 class="text-gray-900 dark:text-white text-xl font-bold leading-tight tracking-[-0.015em]" data-translate="ai_pages_title">Páginas Creadas por IA (OpenWebUI)</h3>
 <button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white gap-2 pl-3 text-sm font-bold leading-normal tracking-[0.015em] w-full sm:w-auto shadow-md hover:shadow-lg hover:scale-95 active:shadow-inner active:scale-90 transition-all duration-300">
 <span class="material-symbols-outlined">auto_awesome</span>
-<span class="truncate">Generar Nueva Página</span>
+<span class="truncate" data-translate="ai_pages_generate_new">Generar Nueva Página</span>
 </button>
 </div>
 <div class="overflow-x-auto">
 <table class="w-full text-left">
 <thead>
 <tr class="bg-light-highlight/20 dark:bg-dark-highlight/20">
-<th class="px-4 py-3 text-left text-gray-600 dark:text-gray-300 text-sm font-semibold tracking-wide">Nombre/Título</th>
-<th class="px-4 py-3 text-left text-gray-600 dark:text-gray-300 text-sm font-semibold tracking-wide">Sitio Web Asociado</th>
-<th class="px-4 py-3 text-left text-gray-600 dark:text-gray-300 text-sm font-semibold tracking-wide">Fecha de Creación</th>
-<th class="px-4 py-3 text-left text-gray-600 dark:text-gray-300 text-sm font-semibold tracking-wide">Acciones</th>
+<th class="px-4 py-3 text-left text-gray-600 dark:text-gray-300 text-sm font-semibold tracking-wide" data-translate="ai_pages_table_name">Nombre/Título</th>
+<th class="px-4 py-3 text-left text-gray-600 dark:text-gray-300 text-sm font-semibold tracking-wide" data-translate="ai_pages_table_website">Sitio Web Asociado</th>
+<th class="px-4 py-3 text-left text-gray-600 dark:text-gray-300 text-sm font-semibold tracking-wide" data-translate="ai_pages_table_date">Fecha de Creación</th>
+<th class="px-4 py-3 text-left text-gray-600 dark:text-gray-300 text-sm font-semibold tracking-wide" data-translate="ai_pages_table_actions">Acciones</th>
 </tr>
 </thead>
 <tbody>
 <tr class="border-t border-light-shadow/30 dark:border-dark-highlight/50">
-<td class="h-auto px-4 py-3 text-gray-800 dark:text-gray-100 text-sm font-medium">Landing Page V1</td>
-<td class="h-auto px-4 py-3 text-gray-500 dark:text-gray-400 text-sm">Sitio Corporativo</td>
+<td class="h-auto px-4 py-3 text-gray-800 dark:text-gray-100 text-sm font-medium" data-translate="ai_pages_page_1_name">Landing Page V1</td>
+<td class="h-auto px-4 py-3 text-gray-500 dark:text-gray-400 text-sm" data-translate="ai_pages_page_1_website">Sitio Corporativo</td>
 <td class="h-auto px-4 py-3 text-gray-500 dark:text-gray-400 text-sm">2023-10-26</td>
 <td class="h-auto px-4 py-3">
 <div class="flex items-center flex-wrap gap-2">
-<button class="flex items-center justify-center h-8 px-2.5 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-1.5"><span class="material-symbols-outlined !text-base">visibility</span>Ver</button>
-<button class="flex items-center justify-center h-8 px-2.5 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-1.5"><span class="material-symbols-outlined !text-base">edit</span>Editar</button>
-<button class="flex items-center justify-center h-8 px-2.5 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-1.5"><span class="material-symbols-outlined !text-base">download</span>Descargar</button>
+<button class="flex items-center justify-center h-8 px-2.5 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-1.5"><span class="material-symbols-outlined !text-base">visibility</span><span data-translate="my_websites_action_view">Ver</span></button>
+<button class="flex items-center justify-center h-8 px-2.5 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-1.5"><span class="material-symbols-outlined !text-base">edit</span><span data-translate="my_websites_action_edit">Editar</span></button>
+<button class="flex items-center justify-center h-8 px-2.5 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-1.5"><span class="material-symbols-outlined !text-base">download</span><span data-translate="my_websites_action_download">Descargar</span></button>
 </div>
 </td>
 </tr>
 <tr class="border-t border-light-shadow/30 dark:border-dark-highlight/50">
-<td class="h-auto px-4 py-3 text-gray-800 dark:text-gray-100 text-sm font-medium">Página de Contacto</td>
-<td class="h-auto px-4 py-3 text-gray-500 dark:text-gray-400 text-sm">Blog de Contenidos</td>
+<td class="h-auto px-4 py-3 text-gray-800 dark:text-gray-100 text-sm font-medium" data-translate="ai_pages_page_2_name">Página de Contacto</td>
+<td class="h-auto px-4 py-3 text-gray-500 dark:text-gray-400 text-sm" data-translate="ai_pages_page_2_website">Blog de Contenidos</td>
 <td class="h-auto px-4 py-3 text-gray-500 dark:text-gray-400 text-sm">2023-10-25</td>
 <td class="h-auto px-4 py-3">
 <div class="flex items-center flex-wrap gap-2">
-<button class="flex items-center justify-center h-8 px-2.5 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-1.5"><span class="material-symbols-outlined !text-base">visibility</span>Ver</button>
-<button class="flex items-center justify-center h-8 px-2.5 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-1.5"><span class="material-symbols-outlined !text-base">edit</span>Editar</button>
-<button class="flex items-center justify-center h-8 px-2.5 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-1.5"><span class="material-symbols-outlined !text-base">download</span>Descargar</button>
+<button class="flex items-center justify-center h-8 px-2.5 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-1.5"><span class="material-symbols-outlined !text-base">visibility</span><span data-translate="my_websites_action_view">Ver</span></button>
+<button class="flex items-center justify-center h-8 px-2.5 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-1.5"><span class="material-symbols-outlined !text-base">edit</span><span data-translate="my_websites_action_edit">Editar</span></button>
+<button class="flex items-center justify-center h-8 px-2.5 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-1.5"><span class="material-symbols-outlined !text-base">download</span><span data-translate="my_websites_action_download">Descargar</span></button>
 </div>
 </td>
 </tr>
@@ -437,32 +480,32 @@
 <div class="p-4 sm:p-6">
 <div class="relative bg-background-light dark:bg-background-dark backdrop-blur-xl rounded-xl p-6 shadow-neumorphic-light dark:shadow-neumorphic-dark">
 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
-<h3 class="text-gray-900 dark:text-white text-xl font-bold leading-tight tracking-[-0.015em]">Artefactos (generados por IA)</h3>
+<h3 class="text-gray-900 dark:text-white text-xl font-bold leading-tight tracking-[-0.015em]" data-translate="ai_artifacts_title">Artefactos (generados por IA)</h3>
 <button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white gap-2 pl-3 text-sm font-bold leading-normal tracking-[0.015em] w-full sm:w-auto shadow-md hover:shadow-lg hover:scale-95 active:shadow-inner active:scale-90 transition-all duration-300">
 <span class="material-symbols-outlined">auto_awesome</span>
-<span class="truncate">Generar Nuevo Artefacto</span>
+<span class="truncate" data-translate="ai_artifacts_generate_new">Generar Nuevo Artefacto</span>
 </button>
 </div>
 <div class="overflow-x-auto">
 <table class="w-full text-left">
 <thead>
 <tr class="bg-light-highlight/20 dark:bg-dark-highlight/20">
-<th class="px-4 py-3 text-left text-gray-600 dark:text-gray-300 text-sm font-semibold tracking-wide">Nombre/Título</th>
-<th class="px-4 py-3 text-left text-gray-600 dark:text-gray-300 text-sm font-semibold tracking-wide">Sitio Web Asociado</th>
-<th class="px-4 py-3 text-left text-gray-600 dark:text-gray-300 text-sm font-semibold tracking-wide">Fecha de Creación</th>
-<th class="px-4 py-3 text-left text-gray-600 dark:text-gray-300 text-sm font-semibold tracking-wide">Acciones</th>
+<th class="px-4 py-3 text-left text-gray-600 dark:text-gray-300 text-sm font-semibold tracking-wide" data-translate="ai_artifacts_table_name">Nombre/Título</th>
+<th class="px-4 py-3 text-left text-gray-600 dark:text-gray-300 text-sm font-semibold tracking-wide" data-translate="ai_artifacts_table_website">Sitio Web Asociado</th>
+<th class="px-4 py-3 text-left text-gray-600 dark:text-gray-300 text-sm font-semibold tracking-wide" data-translate="ai_artifacts_table_date">Fecha de Creación</th>
+<th class="px-4 py-3 text-left text-gray-600 dark:text-gray-300 text-sm font-semibold tracking-wide" data-translate="ai_artifacts_table_actions">Acciones</th>
 </tr>
 </thead>
 <tbody>
 <tr class="border-t border-light-shadow/30 dark:border-dark-highlight/50">
 <td class="h-auto px-4 py-3 text-gray-800 dark:text-gray-100 text-sm font-medium">script_deploy_v2.sh</td>
-<td class="h-auto px-4 py-3 text-gray-500 dark:text-gray-400 text-sm">Sitio Corporativo</td>
+<td class="h-auto px-4 py-3 text-gray-500 dark:text-gray-400 text-sm" data-translate="ai_artifacts_artifact_1_website">Sitio Corporativo</td>
 <td class="h-auto px-4 py-3 text-gray-500 dark:text-gray-400 text-sm">2023-10-24</td>
 <td class="h-auto px-4 py-3">
 <div class="flex items-center flex-wrap gap-2">
-<button class="flex items-center justify-center h-8 px-2.5 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-1.5"><span class="material-symbols-outlined !text-base">visibility</span>Ver</button>
-<button class="flex items-center justify-center h-8 px-2.5 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-1.5"><span class="material-symbols-outlined !text-base">edit</span>Editar</button>
-<button class="flex items-center justify-center h-8 px-2.5 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-1.5"><span class="material-symbols-outlined !text-base">download</span>Descargar</button>
+<button class="flex items-center justify-center h-8 px-2.5 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-1.5"><span class="material-symbols-outlined !text-base">visibility</span><span data-translate="my_websites_action_view">Ver</span></button>
+<button class="flex items-center justify-center h-8 px-2.5 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-1.5"><span class="material-symbols-outlined !text-base">edit</span><span data-translate="my_websites_action_edit">Editar</span></button>
+<button class="flex items-center justify-center h-8 px-2.5 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200 gap-1.5"><span class="material-symbols-outlined !text-base">download</span><span data-translate="my_websites_action_download">Descargar</span></button>
 </div>
 </td>
 </tr>
@@ -476,84 +519,84 @@
 <!-- ================================================================================================== -->
 <div class="p-4 sm:p-6">
 <div class="relative bg-background-light dark:bg-background-dark backdrop-blur-xl rounded-xl p-6 shadow-neumorphic-light dark:shadow-neumorphic-dark">
-<h3 class="text-gray-900 dark:text-white text-xl font-bold leading-tight tracking-[-0.015em] mb-6">Estado de Workflows (n8n)</h3>
+<h3 class="text-gray-900 dark:text-white text-xl font-bold leading-tight tracking-[-0.015em] mb-6" data-translate="workflows_title">Estado de Workflows (n8n)</h3>
 <div class="overflow-x-auto">
 <table class="w-full text-left">
 <thead>
 <tr class="bg-light-highlight/20 dark:bg-dark-highlight/20">
-<th class="px-4 py-3 text-left text-gray-600 dark:text-gray-300 text-sm font-semibold tracking-wide">Nombre del Workflow</th>
-<th class="px-4 py-3 text-left text-gray-600 dark:text-gray-300 text-sm font-semibold tracking-wide">Sitio Web Asociado</th>
-<th class="px-4 py-3 text-left text-gray-600 dark:text-gray-300 text-sm font-semibold tracking-wide">Estado</th>
-<th class="px-4 py-3 text-left text-gray-600 dark:text-gray-300 text-sm font-semibold tracking-wide">Última Ejecución</th>
-<th class="px-4 py-3 text-left text-gray-600 dark:text-gray-300 text-sm font-semibold tracking-wide">Acciones</th>
+<th class="px-4 py-3 text-left text-gray-600 dark:text-gray-300 text-sm font-semibold tracking-wide" data-translate="workflows_table_name">Nombre del Workflow</th>
+<th class="px-4 py-3 text-left text-gray-600 dark:text-gray-300 text-sm font-semibold tracking-wide" data-translate="workflows_table_website">Sitio Web Asociado</th>
+<th class="px-4 py-3 text-left text-gray-600 dark:text-gray-300 text-sm font-semibold tracking-wide" data-translate="workflows_table_status">Estado</th>
+<th class="px-4 py-3 text-left text-gray-600 dark:text-gray-300 text-sm font-semibold tracking-wide" data-translate="workflows_table_last_run">Última Ejecución</th>
+<th class="px-4 py-3 text-left text-gray-600 dark:text-gray-300 text-sm font-semibold tracking-wide" data-translate="workflows_table_actions">Acciones</th>
 </tr>
 </thead>
 <tbody>
 <tr class="border-t border-light-shadow/30 dark:border-dark-highlight/50">
-<td class="px-4 py-3 text-gray-800 dark:text-gray-100 text-sm font-medium">Backup Diario de Sitios</td>
-<td class="px-4 py-3 text-gray-500 dark:text-gray-400 text-sm">Todos</td>
+<td class="px-4 py-3 text-gray-800 dark:text-gray-100 text-sm font-medium" data-translate="workflows_workflow_1_name">Backup Diario de Sitios</td>
+<td class="px-4 py-3 text-gray-500 dark:text-gray-400 text-sm" data-translate="workflows_website_all">Todos</td>
 <td class="px-4 py-3 text-sm">
 <span class="inline-flex items-center gap-1.5 rounded-full bg-success/10 px-3 py-1 text-xs font-medium text-success">
-<span class="size-2 rounded-full bg-success"></span>Activo
+<span class="size-2 rounded-full bg-success"></span><span data-translate="workflows_status_active">Activo</span>
                                                         </span>
 </td>
 <td class="px-4 py-3 text-gray-500 dark:text-gray-400 text-sm">2023-10-27 04:00</td>
 <td class="px-4 py-3 text-sm">
 <div class="flex items-center flex-wrap gap-2">
-<button class="flex items-center justify-center h-8 px-3 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium gap-1.5 shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200"><span class="material-symbols-outlined !text-sm">play_arrow</span>Ejecutar</button>
-<button class="flex items-center justify-center h-8 px-3 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium gap-1.5 shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200"><span class="material-symbols-outlined !text-sm">stop</span>Detener</button>
-<button class="flex items-center justify-center h-8 px-3 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium gap-1.5 shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200"><span class="material-symbols-outlined !text-sm">description</span>Ver Logs</button>
+<button class="flex items-center justify-center h-8 px-3 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium gap-1.5 shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200"><span class="material-symbols-outlined !text-sm">play_arrow</span><span data-translate="workflows_action_run">Ejecutar</span></button>
+<button class="flex items-center justify-center h-8 px-3 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium gap-1.5 shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200"><span class="material-symbols-outlined !text-sm">stop</span><span data-translate="workflows_action_stop">Detener</span></button>
+<button class="flex items-center justify-center h-8 px-3 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium gap-1.5 shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200"><span class="material-symbols-outlined !text-sm">description</span><span data-translate="workflows_action_view_logs">Ver Logs</span></button>
 </div>
 </td>
 </tr>
 <tr class="border-t border-light-shadow/30 dark:border-dark-highlight/50">
-<td class="px-4 py-3 text-gray-800 dark:text-gray-100 text-sm font-medium">Deploy en Staging</td>
-<td class="px-4 py-3 text-gray-500 dark:text-gray-400 text-sm">Sitio Corporativo</td>
+<td class="px-4 py-3 text-gray-800 dark:text-gray-100 text-sm font-medium" data-translate="workflows_workflow_2_name">Deploy en Staging</td>
+<td class="px-4 py-3 text-gray-500 dark:text-gray-400 text-sm" data-translate="workflows_website_corporate">Sitio Corporativo</td>
 <td class="px-4 py-3 text-sm">
 <span class="inline-flex items-center gap-1.5 rounded-full bg-gray-500/10 px-3 py-1 text-xs font-medium text-gray-500 dark:text-gray-400">
-<span class="size-2 rounded-full bg-gray-500 dark:bg-gray-400"></span>Inactivo
+<span class="size-2 rounded-full bg-gray-500 dark:bg-gray-400"></span><span data-translate="workflows_status_inactive">Inactivo</span>
                                                         </span>
 </td>
 <td class="px-4 py-3 text-gray-500 dark:text-gray-400 text-sm">2023-10-26 15:30</td>
 <td class="px-4 py-3 text-sm">
 <div class="flex items-center flex-wrap gap-2">
-<button class="flex items-center justify-center h-8 px-3 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium gap-1.5 shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200"><span class="material-symbols-outlined !text-sm">play_arrow</span>Ejecutar</button>
-<button class="flex items-center justify-center h-8 px-3 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium gap-1.5 shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200"><span class="material-symbols-outlined !text-sm">stop</span>Detener</button>
-<button class="flex items-center justify-center h-8 px-3 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium gap-1.5 shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200"><span class="material-symbols-outlined !text-sm">description</span>Ver Logs</button>
+<button class="flex items-center justify-center h-8 px-3 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium gap-1.5 shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200"><span class="material-symbols-outlined !text-sm">play_arrow</span><span data-translate="workflows_action_run">Ejecutar</span></button>
+<button class="flex items-center justify-center h-8 px-3 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium gap-1.5 shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200"><span class="material-symbols-outlined !text-sm">stop</span><span data-translate="workflows_action_stop">Detener</span></button>
+<button class="flex items-center justify-center h-8 px-3 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium gap-1.5 shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200"><span class="material-symbols-outlined !text-sm">description</span><span data-translate="workflows_action_view_logs">Ver Logs</span></button>
 </div>
 </td>
 </tr>
 <tr class="border-t border-light-shadow/30 dark:border-dark-highlight/50">
-<td class="px-4 py-3 text-gray-800 dark:text-gray-100 text-sm font-medium">Sincronización de Productos</td>
-<td class="px-4 py-3 text-gray-500 dark:text-gray-400 text-sm">Plataforma E-commerce</td>
+<td class="px-4 py-3 text-gray-800 dark:text-gray-100 text-sm font-medium" data-translate="workflows_workflow_3_name">Sincronización de Productos</td>
+<td class="px-4 py-3 text-gray-500 dark:text-gray-400 text-sm" data-translate="workflows_website_ecommerce">Plataforma E-commerce</td>
 <td class="px-4 py-3 text-sm">
 <span class="inline-flex items-center gap-1.5 rounded-full bg-info/10 px-3 py-1 text-xs font-medium text-info">
-<span class="size-2 rounded-full bg-info animate-pulse"></span>Ejecutándose
+<span class="size-2 rounded-full bg-info animate-pulse"></span><span data-translate="workflows_status_running">Ejecutándose</span>
                                                         </span>
 </td>
 <td class="px-4 py-3 text-gray-500 dark:text-gray-400 text-sm">2023-10-27 10:05</td>
 <td class="px-4 py-3 text-sm">
 <div class="flex items-center flex-wrap gap-2">
-<button class="flex items-center justify-center h-8 px-3 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium gap-1.5 shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200"><span class="material-symbols-outlined !text-sm">play_arrow</span>Ejecutar</button>
-<button class="flex items-center justify-center h-8 px-3 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium gap-1.5 shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200"><span class="material-symbols-outlined !text-sm">stop</span>Detener</button>
-<button class="flex items-center justify-center h-8 px-3 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium gap-1.5 shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200"><span class="material-symbols-outlined !text-sm">description</span>Ver Logs</button>
+<button class="flex items-center justify-center h-8 px-3 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium gap-1.5 shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200"><span class="material-symbols-outlined !text-sm">play_arrow</span><span data-translate="workflows_action_run">Ejecutar</span></button>
+<button class="flex items-center justify-center h-8 px-3 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium gap-1.5 shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200"><span class="material-symbols-outlined !text-sm">stop</span><span data-translate="workflows_action_stop">Detener</span></button>
+<button class="flex items-center justify-center h-8 px-3 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium gap-1.5 shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200"><span class="material-symbols-outlined !text-sm">description</span><span data-translate="workflows_action_view_logs">Ver Logs</span></button>
 </div>
 </td>
 </tr>
 <tr class="border-t border-light-shadow/30 dark:border-dark-highlight/50">
-<td class="px-4 py-3 text-gray-800 dark:text-gray-100 text-sm font-medium">Publicación de Artículos</td>
-<td class="px-4 py-3 text-gray-500 dark:text-gray-400 text-sm">Blog</td>
+<td class="px-4 py-3 text-gray-800 dark:text-gray-100 text-sm font-medium" data-translate="workflows_workflow_4_name">Publicación de Artículos</td>
+<td class="px-4 py-3 text-gray-500 dark:text-gray-400 text-sm" data-translate="workflows_website_blog">Blog</td>
 <td class="px-4 py-3 text-sm">
 <span class="inline-flex items-center gap-1.5 rounded-full bg-error/10 px-3 py-1 text-xs font-medium text-error">
-<span class="size-2 rounded-full bg-error"></span>Con Error
+<span class="size-2 rounded-full bg-error"></span><span data-translate="workflows_status_error">Con Error</span>
                                                         </span>
 </td>
 <td class="px-4 py-3 text-gray-500 dark:text-gray-400 text-sm">2023-10-27 09:15</td>
 <td class="px-4 py-3 text-sm">
 <div class="flex items-center flex-wrap gap-2">
-<button class="flex items-center justify-center h-8 px-3 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium gap-1.5 shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200"><span class="material-symbols-outlined !text-sm">play_arrow</span>Ejecutar</button>
-<button class="flex items-center justify-center h-8 px-3 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium gap-1.5 shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200"><span class="material-symbols-outlined !text-sm">stop</span>Detener</button>
-<button class="flex items-center justify-center h-8 px-3 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium gap-1.5 shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200"><span class="material-symbols-outlined !text-sm">description</span>Ver Logs</button>
+<button class="flex items-center justify-center h-8 px-3 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium gap-1.5 shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200"><span class="material-symbols-outlined !text-sm">play_arrow</span><span data-translate="workflows_action_run">Ejecutar</span></button>
+<button class="flex items-center justify-center h-8 px-3 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium gap-1.5 shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200"><span class="material-symbols-outlined !text-sm">stop</span><span data-translate="workflows_action_stop">Detener</span></button>
+<button class="flex items-center justify-center h-8 px-3 rounded-md bg-background-light dark:bg-background-dark text-gray-600 dark:text-white text-xs font-medium gap-1.5 shadow-neumorphic-light dark:shadow-neumorphic-dark hover:scale-95 hover:shadow-neumorphic-light-hover dark:hover:shadow-neumorphic-dark-hover active:shadow-neumorphic-light-inset dark:active:shadow-neumorphic-dark-inset active:scale-90 transition-all duration-200"><span class="material-symbols-outlined !text-sm">description</span><span data-translate="workflows_action_view_logs">Ver Logs</span></button>
 </div>
 </td>
 </tr>
@@ -568,10 +611,10 @@
 <!-- ================================================================================================== -->
 <footer class="mt-8 border-t border-light-shadow/30 dark:border-dark-highlight/50 px-4 sm:px-6 py-4">
 <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
-<p>Hecho por Luis Manuel Fajardo Rivera</p>
+<p data-translate="footer_author">Hecho por Luis Manuel Fajardo Rivera</p>
 <div class="flex items-center gap-2">
 <span class="material-symbols-outlined text-base">dns</span>
-<span>entorno local</span>
+<span data-translate="footer_environment">entorno local</span>
 </div>
 </div>
 </footer>
@@ -579,6 +622,9 @@
 </div>
 </div>
 </div>
+<!-- ================================================================================================== -->
+<!-- JavaScript -->
+<!-- ================================================================================================== -->
 <script>
         /**
          * @description Updates the time display on the page.
@@ -599,5 +645,220 @@
         }
         updateTime();
         setInterval(updateTime, 60000); // Update every minute
+
+        /**
+         * @description Contains the translations for the dashboard.
+         *              The keys are the language codes (e.g., 'es', 'en'), and the values are
+         *              objects containing the translations for each key.
+         * @type {object}
+         */
+        const translations = {
+            es: {
+                welcome_message: "Buenos días, Luis Rivera",
+                theme_dark: "Oscuro",
+                theme_light: "Claro",
+                theme_system: "Sistema",
+                nav_websites: "Sitios Web",
+                nav_databases: "Bases de Datos",
+                nav_ai_area: "Área de IA",
+                nav_ai_pages: "Páginas IA",
+                nav_workflows: "Workflows",
+                main_title: "Dashboard de Administración",
+                main_subtitle: "Gestiona tus sitios, bases de datos y workflows desde un solo lugar.",
+                resource_consumption_title: "Consumo de Recursos",
+                resource_consumption_online: "Online",
+                resource_consumption_restart: "Reiniciar",
+                resource_consumption_shutdown: "Apagar",
+                resource_consumption_snapshot: "Snapshot",
+                resource_consumption_ram: "RAM",
+                resource_consumption_cpu: "CPU",
+                resource_consumption_ssd: "SSD",
+                resource_consumption_ethernet: "Ethernet",
+                my_websites_title: "Mis Sitios Web",
+                my_websites_add_new: "Añadir Nuevo Sitio Web",
+                my_websites_table_name: "Nombre del Sitio",
+                my_websites_table_url: "URL",
+                my_websites_table_status: "Estado",
+                my_websites_table_actions: "Acciones",
+                my_websites_site_1_name: "Sitio Corporativo Principal",
+                my_websites_site_status_active: "Activo",
+                my_websites_action_view: "Ver",
+                my_websites_action_edit: "Editar",
+                my_websites_action_download: "Descargar",
+                my_websites_site_2_name: "Blog de Contenidos",
+                my_websites_site_3_name: "Plataforma E-commerce",
+                my_websites_site_status_inactive: "Inactivo",
+                db_management_title: "Gestión de Bases de Datos",
+                db_management_table_name: "Nombre de la Base de Datos",
+                db_management_table_website: "Sitio Web",
+                db_management_table_last_backup: "Última Copia de Seguridad",
+                db_management_table_actions: "Acciones",
+                db_management_db_1_website: "Sitio Corporativo",
+                db_management_action_query: "Consulta",
+                db_management_action_copy: "Copiar BD",
+                db_management_action_backup: "Backup",
+                db_management_action_configure: "Configurar",
+                db_management_db_2_website: "Blog de Contenidos",
+                ai_area_title: "Área de IA con RAG y Finetuning",
+                ai_area_rag_model: "Modelo RAG",
+                ai_area_status_active: "Activo",
+                ai_area_action_view_logs: "Ver Logs",
+                ai_area_action_configure: "Configurar",
+                ai_area_finetuning_model: "Modelo Finetuning",
+                ai_area_status_training: "Entrenando",
+                ai_pages_title: "Páginas Creadas por IA (OpenWebUI)",
+                ai_pages_generate_new: "Generar Nueva Página",
+                ai_pages_table_name: "Nombre/Título",
+                ai_pages_table_website: "Sitio Web Asociado",
+                ai_pages_table_date: "Fecha de Creación",
+                ai_pages_table_actions: "Acciones",
+                ai_pages_page_1_name: "Landing Page V1",
+                ai_pages_page_1_website: "Sitio Corporativo",
+                ai_pages_page_2_name: "Página de Contacto",
+                ai_pages_page_2_website: "Blog de Contenidos",
+                ai_artifacts_title: "Artefactos (generados por IA)",
+                ai_artifacts_generate_new: "Generar Nuevo Artefacto",
+                ai_artifacts_table_name: "Nombre/Título",
+                ai_artifacts_table_website: "Sitio Web Asociado",
+                ai_artifacts_table_date: "Fecha de Creación",
+                ai_artifacts_table_actions: "Acciones",
+                ai_artifacts_artifact_1_website: "Sitio Corporativo",
+                workflows_title: "Estado de Workflows (n8n)",
+                workflows_table_name: "Nombre del Workflow",
+                workflows_table_website: "Sitio Web Asociado",
+                workflows_table_status: "Estado",
+                workflows_table_last_run: "Última Ejecución",
+                workflows_table_actions: "Acciones",
+                workflows_workflow_1_name: "Backup Diario de Sitios",
+                workflows_website_all: "Todos",
+                workflows_status_active: "Activo",
+                workflows_action_run: "Ejecutar",
+                workflows_action_stop: "Detener",
+                workflows_action_view_logs: "Ver Logs",
+                workflows_workflow_2_name: "Deploy en Staging",
+                workflows_website_corporate: "Sitio Corporativo",
+                workflows_status_inactive: "Inactivo",
+                workflows_workflow_3_name: "Sincronización de Productos",
+                workflows_website_ecommerce: "Plataforma E-commerce",
+                workflows_status_running: "Ejecutándose",
+                workflows_workflow_4_name: "Publicación de Artículos",
+                workflows_website_blog: "Blog",
+                workflows_status_error: "Con Error",
+                footer_author: "Hecho por Luis Manuel Fajardo Rivera",
+                footer_environment: "entorno local",
+            },
+            en: {
+                welcome_message: "Good morning, Luis Rivera",
+                theme_dark: "Dark",
+                theme_light: "Light",
+                theme_system: "System",
+                nav_websites: "Websites",
+                nav_databases: "Databases",
+                nav_ai_area: "AI Area",
+                nav_ai_pages: "AI Pages",
+                nav_workflows: "Workflows",
+                main_title: "Administration Dashboard",
+                main_subtitle: "Manage your sites, databases, and workflows from one place.",
+                resource_consumption_title: "Resource Consumption",
+                resource_consumption_online: "Online",
+                resource_consumption_restart: "Restart",
+                resource_consumption_shutdown: "Shutdown",
+                resource_consumption_snapshot: "Snapshot",
+                resource_consumption_ram: "RAM",
+                resource_consumption_cpu: "CPU",
+                resource_consumption_ssd: "SSD",
+                resource_consumption_ethernet: "Ethernet",
+                my_websites_title: "My Websites",
+                my_websites_add_new: "Add New Website",
+                my_websites_table_name: "Site Name",
+                my_websites_table_url: "URL",
+                my_websites_table_status: "Status",
+                my_websites_table_actions: "Actions",
+                my_websites_site_1_name: "Main Corporate Site",
+                my_websites_site_status_active: "Active",
+                my_websites_action_view: "View",
+                my_websites_action_edit: "Edit",
+                my_websites_action_download: "Download",
+                my_websites_site_2_name: "Content Blog",
+                my_websites_site_3_name: "E-commerce Platform",
+                my_websites_site_status_inactive: "Inactive",
+                db_management_title: "Database Management",
+                db_management_table_name: "Database Name",
+                db_management_table_website: "Website",
+                db_management_table_last_backup: "Last Backup",
+                db_management_table_actions: "Actions",
+                db_management_db_1_website: "Corporate Site",
+                db_management_action_query: "Query",
+                db_management_action_copy: "Copy DB",
+                db_management_action_backup: "Backup",
+                db_management_action_configure: "Configure",
+                db_management_db_2_website: "Content Blog",
+                ai_area_title: "AI Area with RAG and Finetuning",
+                ai_area_rag_model: "RAG Model",
+                ai_area_status_active: "Active",
+                ai_area_action_view_logs: "View Logs",
+                ai_area_action_configure: "Configure",
+                ai_area_finetuning_model: "Finetuning Model",
+                ai_area_status_training: "Training",
+                ai_pages_title: "AI-created Pages (OpenWebUI)",
+                ai_pages_generate_new: "Generate New Page",
+                ai_pages_table_name: "Name/Title",
+                ai_pages_table_website: "Associated Website",
+                ai_pages_table_date: "Creation Date",
+                ai_pages_table_actions: "Actions",
+                ai_pages_page_1_name: "Landing Page V1",
+                ai_pages_page_1_website: "Corporate Site",
+                ai_pages_page_2_name: "Contact Page",
+                ai_pages_page_2_website: "Content Blog",
+                ai_artifacts_title: "Artifacts (AI-generated)",
+                ai_artifacts_generate_new: "Generate New Artifact",
+                ai_artifacts_table_name: "Name/Title",
+                ai_artifacts_table_website: "Associated Website",
+                ai_artifacts_table_date: "Creation Date",
+                ai_artifacts_table_actions: "Actions",
+                ai_artifacts_artifact_1_website: "Corporate Site",
+                workflows_title: "Workflow Status (n8n)",
+                workflows_table_name: "Workflow Name",
+                workflows_table_website: "Associated Website",
+                workflows_table_status: "Status",
+                workflows_table_last_run: "Last Run",
+                workflows_table_actions: "Actions",
+                workflows_workflow_1_name: "Daily Site Backups",
+                workflows_website_all: "All",
+                workflows_status_active: "Active",
+                workflows_action_run: "Run",
+                workflows_action_stop: "Stop",
+                workflows_action_view_logs: "View Logs",
+                workflows_workflow_2_name: "Deploy to Staging",
+                workflows_website_corporate: "Corporate Site",
+                workflows_status_inactive: "Inactive",
+                workflows_workflow_3_name: "Product Synchronization",
+                workflows_website_ecommerce: "E-commerce Platform",
+                workflows_status_running: "Running",
+                workflows_workflow_4_name: "Article Publication",
+                workflows_website_blog: "Blog",
+                workflows_status_error: "Error",
+                footer_author: "Made by Luis Manuel Fajardo Rivera",
+                footer_environment: "local environment",
+            }
+        };
+
+        /**
+         * @description Changes the language of the dashboard.
+         *              This function finds all elements with the 'data-translate' attribute
+         *              and replaces their text content with the translation for the selected
+         *              language.
+         * @param {string} lang The language code to switch to (e.g., 'es', 'en').
+         * @returns {void}
+         */
+        function changeLanguage(lang) {
+            document.documentElement.lang = lang;
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang] && translations[lang][key]) {
+                    element.innerText = translations[lang][key];
+                }
+            });
+        }
     </script>
 </div></body></html>
