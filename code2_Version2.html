@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<!-- El documento HTML inicia aquí -->
+<html class="dark" lang="es">
+<head>
+    <!-- Configuración del juego de caracteres -->
+    <meta charset="utf-8"/>
+    <!-- Hace que el sitio sea responsivo en dispositivos móviles -->
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <!-- Título que aparece en la pestaña del navegador -->
+    <title>WebAdmin AI Dashboard</title>
+    <!-- Importa TailwindCSS desde CDN con plugins para formularios y container queries -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Fuente principal Lexend desde Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+    <!-- Íconos Material Symbols desde Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+    <!-- Configuración personalizada de Tailwind para colores y modo oscuro -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#000000",
+                        "primary-light-text": "#3B82F6",
+                        "primary-dark-text": "#60A5FA",
+                        "background-light": "#E0E5EC",
+                        "background-dark": "#1C1F26",
+                        // Otros colores personalizados...
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Estilos CSS personalizados -->
+    <style>
+        body {
+            font-family: 'Lexend', sans-serif;
+            background-color: #E0E5EC;
+        }
+        .dark body {
+            background-color: #1C1F26;
+        }
+        /* Cambia el color de fondo según el modo del sistema */
+        @media (prefers-color-scheme: dark) {
+            html:not(.light) {
+                --tw-bg-opacity: 1;
+                background-color: #1C1F26;
+            }
+            html:not(.light) body {
+                background-color: #1C1F26;
+            }
+        }
+        @media (prefers-color-scheme: light) {
+            html:not(.dark) {
+                --tw-bg-opacity: 1;
+                background-color: #E0E5EC;
+            }
+            html:not(.dark) body {
+                background-color: #E0E5EC;
+            }
+        }
+        /* Mostrar menú desplegable al pasar el mouse */
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        /* Animaciones para botones neumórficos */
+        .btn-neumorphic {
+            transition: all 0.2s ease-in-out;
+        }
+        .btn-neumorphic:hover {
+            transform: scale(0.98);
+            box-shadow: 0 0 0 transparent;
+        }
+        .btn-neumorphic:active {
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-700 dark:text-gray-300">
+<!-- Contenedor principal de la aplicación -->
+<div class="relative flex h-auto min-h-screen w-full group/design-root overflow-x-hidden">
+    <div class="flex-1 flex flex-col">
+        <div class="layout-container flex h-full grow flex-col">
+            <!-- Barra superior/header -->
+            <div class="px-2 sm:px-4 md:px-6 flex flex-1 justify-center py-5">
+                <div class="layout-content-container flex flex-col w-full max-w-7xl">
+                    <header class="flex items-center justify-between whitespace-nowrap px-4 sm:px-6 py-3 sticky top-4 z-20">
+                        <!-- Logo y título -->
+                        <div class="flex items-center gap-4 text-gray-800 dark:text-white">
+                            <div class="size-6 text-primary-light-text dark:text-primary-dark-text">
+                                <!-- Ícono principal -->
+                                <span class="material-symbols-outlined !text-4xl text-blue-500">hub</span>
+                            </div>
+                            <h1 class="text-gray-900 dark:text-white text-xl font-bold leading-tight tracking-[-0.015em]">WebAdmin AI</h1>
+                        </div>
+                        <!-- Menú de navegación principal -->
+                        <nav class="p-1 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm rounded-full shadow-neumorphic-light dark:shadow-neumorphic-dark flex items-center justify-center gap-1 absolute left-1/2 -translate-x-1/2">
+                            <!-- Cada <a> es una opción de menú -->
+                            <a class="relative flex items-center gap-2 px-4 py-2 text-sm font-semibold transition-all duration-300 group rounded-full bg-blue-500/90 dark:bg-blue-600/90 shadow-neumorphic-light-inset dark:shadow-neumorphic-dark-inset text-white" href="#">
+                                <span class="material-symbols-outlined !text-xl">web</span>
+                                <span>Sitios Web</span>
+                            </a>
+                            <a class="relative flex items-center gap-2 px-4 py-2 text-sm font-medium transition-all duration-300 group text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white rounded-full hover:bg-light-shadow/20 dark:hover:bg-dark-highlight/40" href="#">
+                                <span class="material-symbols-outlined !text-xl">database</span>
+                                <span>Bases de Datos</span>
+                            </a>
+                            <a class="relative flex items-center gap-2 px-4 py-2 text-sm font-medium transition-all duration-300 group text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white rounded-full hover:bg-light-shadow/20 dark:hover:bg-dark-highlight/40" href="#">
+                                <span class="material-symbols-outlined !text-xl">psychology</span>
+                                <span>Área de IA</span>
+                            </a>
+                            <a class="relative flex items-center gap-2 px-4 py-2 text-sm font-medium transition-all duration-300 group text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white rounded-full hover:bg-light-shadow/20 dark:hover:bg-dark-highlight/40" href="#">
+                                <span class="material-symbols-outlined !text-xl">auto_awesome</span>
+                                <span>Páginas IA</span>
+                            </a>
+                            <a class="relative flex items-center gap-2 px-4 py-2 text-sm font-medium transition-all duration-300 group text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white rounded-full hover:bg-light-shadow/20 dark:hover:bg-dark-highlight/40" href="#">
+                                <span class="material-symbols-outlined !text-xl">sync</span>
+                                <span>Workflows</span>
+                            </a>
+                        </nav>
+                        <!-- Panel de usuario (nombre, hora, menú de tema, notificaciones, foto) -->
+                        <div class="flex items-center gap-2">
+                            <div class="hidden sm:flex flex-col items-end mr-2">
+                                <p class="text-sm font-semibold text-gray-800 dark:text-white">Buenos días, Luis Rivera</p>
+                                <p class="text-xs text-gray-500 dark:text-gray-400" id="current-time"></p>
+                            </div>
+                            <div class="relative dropdown">
+                                <button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 w-10 bg-gradient-to-br from-background-light to-white/50 dark:from-background-dark dark:to-dark-highlight">
+                                    <span class="material-symbols-outlined">contrast</span>
+                                </button>
+                                <!-- Menú desplegable para elegir tema de color -->
+                                <div class="dropdown-menu absolute right-0 mt-2 w-40 bg-background-light dark:bg-background-dark rounded-xl shadow-neumorphic-light dark:shadow-neumorphic-dark hidden z-20 overflow-hidden">
+                                    <a class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-light-shadow/20 dark:hover:bg-dark-highlight/40" href="#">
+                                        <span class="material-symbols-outlined !text-xl">dark_mode</span>
+                                        <span>Oscuro</span>
+                                    </a>
+                                    <a class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-light-shadow/20 dark:hover:bg-dark-highlight/40" href="#">
+                                        <span class="material-symbols-outlined !text-xl">light_mode</span>
+                                        <span>Claro</span>
+                                    </a>
+                                    <a class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-light-shadow/20 dark:hover:bg-dark-highlight/40" href="#">
+                                        <span class="material-symbols-outlined !text-xl">desktop_windows</span>
+                                        <span>Sistema</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- Botón para notificaciones -->
+                            <button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 w-10 bg-gradient-to-br from-background-light to-white/50 dark:from-background-dark dark:to-dark-highlight">
+                                <span class="material-symbols-outlined">notifications</span>
+                            </button>
+                            <!-- Imagen de perfil del usuario -->
+                            <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 shadow-neumorphic-light dark:shadow-neumorphic-dark" data-alt="User profile picture" style='background-image: url("https://...")'></div>
+                        </div>
+                    </header>
+                    <!-- Sección principal del dashboard -->
+                    <main class="flex-1 mt-12">
+                        <!-- Panel: Dashboard de Administración -->
+                        <div class="flex flex-wrap justify-between gap-3 p-4 sm:p-6 pt-8">
+                            <div class="flex min-w-72 flex-col gap-2">
+                                <h2 class="text-gray-900 dark:text-white text-3xl font-black leading-tight tracking-[-0.03em]">Dashboard de Administración</h2>
+                                <p class="text-gray-500 dark:text-gray-400 text-base font-normal leading-relaxed">Gestiona tus sitios, bases de datos y workflows desde un solo lugar.</p>
+                            </div>
+                        </div>
+                        <!-- Panel de recursos (RAM, CPU, SSD, Ethernet) -->
+                        <div class="p-4 sm:p-6">
+                            <div class="relative bg-gradient-to-br ... rounded-xl p-6 shadow-neumorphic-light dark:shadow-neumorphic-dark">
+                                <div class="flex flex-wrap justify-between items-start gap-6 mb-6">
+                                    <div class="flex items-center gap-4">
+                                        <h3 class="text-gray-900 dark:text-white text-xl font-bold">Consumo de Recursos</h3>
+                                        <!-- Indicador de estado online -->
+                                        <div class="flex items-center gap-2 px-3 py-1 bg-background-light dark:bg-background-dark rounded-full shadow-neumorphic-light-inset dark:shadow-neumorphic-dark-inset">
+                                            <span class="relative flex h-3 w-3">
+                                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
+                                                <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                                            </span>
+                                            <span class="text-sm font-medium text-green-500">Online</span>
+                                        </div>
+                                    </div>
+                                    <!-- Botones de acciones relacionados a recursos -->
+                                    <div class="flex items-center flex-wrap gap-3">
+                                        <button class="flex items-center justify-center h-10 px-4 rounded-lg ... text-gray-600 dark:text-white">Acción 1</button>
+                                        <button class="flex items-center justify-center h-10 px-4 rounded-lg ... text-error dark:text-red-400">Acción 2</button>
+                                        <button class="flex items-center justify-center h-10 px-4 rounded-lg ... text-warning dark:text-amber-400">Acción 3</button>
+                                    </div>
+                                </div>
+                                <!-- Indicadores circulares de recursos -->
+                                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                                    <!-- Indicador RAM -->
+                                    <div class="flex flex-col items-center gap-3">
+                                        <div class="relative size-32">
+                                            <!-- Gráfico circular SVG para RAM -->
+                                            <svg class="absolute inset-0 size-full" height="120" viewBox="0 0 120 120" width="120">
+                                                <circle class="stroke-light-shadow/30 dark:stroke-dark-highlight/50" cx="60" cy="60" fill="none" r="54" stroke-linecap="round" stroke-width="12"></circle>
+                                                <circle class="stroke-primary-dark-text" cx="60" cy="60" fill="none" r="54" stroke-dasharray="339.292" stroke-dashoffset="84.823" stroke-linecap="round" stroke-width="12" style="transform: rotate(-90deg);"></circle>
+                                            </svg>
+                                            <!-- Ícono y valor -->
+                                            <div class="absolute inset-0 flex flex-col items-center justify-center p-2 rounded-full shadow-neumorphic-light-inset dark:shadow-neumorphic-dark-inset bg-gradient-to-br from-background-light/50 to-white/50 dark:from-background-dark/50 dark:to-dark-highlight/30">
+                                                <span class="material-symbols-outlined text-primary-light-text dark:text-primary-dark-text !text-4xl">memory_alt</span>
+                                            </div>
+                                        </div>
+                                        <div class="text-center">
+                                            <p class="font-semibold text-gray-800 dark:text-gray-100">RAM</p>
+                                            <p class="text-sm font-bold text-gray-800 dark:text-white">75%</p>
+                                            <p class="text-xs text-gray-500 dark:text-gray-400">Uso actual</p>
+                                        </div>
+                                    </div>
+                                    <!-- Indicador CPU -->
+                                    <!-- ... (repetir la estructura para CPU, SSD y Ethernet) ... -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Panel: Mis Sitios Web -->
+                        <div class="p-4 sm:p-6">
+                            <div class="relative bg-gradient-to-br ... rounded-xl p-6 shadow-neumorphic-light dark:shadow-neumorphic-dark">
+                                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                                    <h3 class="text-gray-900 dark:text-white text-xl font-bold">Mis Sitios Web</h3>
+                                    <button class="flex min-w-[84px] max-w-[480px] ... bg-blue-500/90 dark:bg-blue-600/90 text-white gap-2 text-sm font-bold">
+                                        <span class="material-symbols-outlined">add</span>
+                                        <span class="truncate">Añadir Nuevo Sitio Web</span>
+                                    </button>
+                                </div>
+                                <!-- Tabla de sitios web -->
+                                <div class="@container">
+                                    <div class="overflow-x-auto">
+                                        <table class="w-full text-left">
+                                            <thead>
+                                                <tr class="bg-light-highlight/20 dark:bg-dark-highlight/20">
+                                                    <th class="px-4 py-3 ...">Nombre del Sitio</th>
+                                                    <th class="px-4 py-3 ...">URL</th>
+                                                    <th class="px-4 py-3 ... text-center">Estado</th>
+                                                    <th class="px-4 py-3 ...">Acciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <!-- Cada fila representa un sitio web -->
+                                                <tr class="border-t border-light-shadow/30 dark:border-dark-highlight/50">
+                                                    <td class="h-auto px-4 py-3 ...">Sitio Corporativo Principal</td>
+                                                    <td class="h-auto px-4 py-3 ...">www.miempresa.com</td>
+                                                    <td class="h-auto px-4 py-3 text-center">
+                                                        <span class="inline-flex items-center gap-1.5 rounded-full bg-success/10 px-3 py-1 text-xs font-medium text-success">
+                                                            <span class="size-2 rounded-full bg-success"></span>Activo
+                                                        </span>
+                                                    </td>
+                                                    <td class="h-auto px-4 py-3">
+                                                        <div class="flex items-center flex-wrap gap-2">
+                                                            <!-- Botones para acciones de cada sitio web -->
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <!-- ... Más filas para otros sitios ... -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Panel: Gestión de Bases de Datos -->
+                        <div class="p-4 sm:p-6">
+                            <div class="relative bg-gradient-to-br ... rounded-xl p-6 shadow-neumorphic-light dark:shadow-neumorphic-dark">
+                                <h3 class="text-gray-900 dark:text-white text-xl font-bold mb-6">Gestión de Bases de Datos</h3>
+                                <div class="@container">
+                                    <div class="overflow-x-auto">
+                                        <table class="w-full text-left">
+                                            <thead>
+                                                <tr class="bg-light-highlight/20 dark:bg-dark-highlight/20">
+                                                    <th class="px-4 py-3 ...">Nombre de la Base de Datos</th>
+                                                    <th class="px-4 py-3 ...">Sitio Web</th>
+                                                    <th class="px-4 py-3 ...">Última Copia de Seguridad</th>
+                                                    <th class="px-4 py-3 ...">Acciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <!-- Cada fila representa una base de datos -->
+                                                <tr class="border-t border-light-shadow/30 dark:border-dark-highlight/50">
+                                                    <td class="h-auto px-4 py-3 ...">corp_db_prod</td>
+                                                    <td class="h-auto px-4 py-3 ...">Sitio Corporativo</td>
+                                                    <td class="h-auto px-4 py-3 ...">2023-10-27 03:00</td>
+                                                    <td class="h-auto px-4 py-3 ...">
+                                                        <div class="flex items-center flex-wrap gap-2">
+                                                            <!-- Botones para acciones de base de datos -->
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <!-- ... Más filas ... -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Panel: Área de IA con RAG y Finetuning -->
+                        <div class="p-4 sm:p-6">
+                            <div class="relative bg-gradient-to-br ... rounded-xl p-6 shadow-neumorphic-light dark:shadow-neumorphic-dark">
+                                <h3 class="text-gray-900 dark:text-white text-xl font-bold mb-6">Área de IA con RAG y Finetuning</h3>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <!-- Panel Modelo RAG -->
+                                    <div class="flex items-center justify-between p-4 bg-gradient-to-br ... rounded-lg shadow-neumorphic-light dark:shadow-neumorphic-dark">
+                                        <div class="flex items-center gap-3">
+                                            <span class="material-symbols-outlined text-primary-light-text dark:text-primary-dark-text text-2xl">model_training</span>
+                                            <div>
+                                                <p class="font-medium text-gray-800 dark:text-white">Modelo RAG</p>
+                                                <div class="flex items-center gap-2 mt-1">
+                                                    <span class="inline-flex items-center gap-1.5 rounded-full bg-success/10 px-3 py-1 text-xs font-medium text-success">
+                                                        <span class="size-2 rounded-full bg-success"></span>Activo
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <button class="text-primary-light-text dark:text-primary-dark-text hover:underline text-sm font-bold">Ver Logs</button>
+                                            <button class="text-primary-light-text dark:text-primary-dark-text hover:underline text-sm font-bold">Configurar</button>
+                                        </div>
+                                    </div>
+                                    <!-- Panel Modelo Finetuning -->
+                                    <div class="flex items-center justify-between p-4 bg-gradient-to-br ... rounded-lg shadow-neumorphic-light dark:shadow-neumorphic-dark">
+                                        <div class="flex items-center gap-3">
+                                            <span class="material-symbols-outlined text-primary-light-text dark:text-primary-dark-text text-2xl">psychology</span>
+                                            <div>
+                                                <p class="font-medium text-gray-800 dark:text-white">Modelo Finetuning</p>
+                                                <div class="flex items-center gap-2 mt-1">
+                                                    <span class="inline-flex items-center gap-1.5 rounded-full bg-warning/10 px-3 py-1 text-xs font-medium text-warning">
+                                                        <span class="size-2 rounded-full bg-warning"></span>Entrenando
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <button class="text-primary-light-text dark:text-primary-dark-text hover:underline text-sm font-bold">Ver Logs</button>
+                                            <button class="text-primary-light-text dark:text-primary-dark-text hover:underline text-sm font-bold">Configurar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Panel: Páginas Creadas por IA -->
+                        <div class="p-4 sm:p-6">
+                            <div class="relative bg-gradient-to-br ... rounded-xl p-6 shadow-neumorphic-light dark:shadow-neumorphic-dark">
+                                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                                    <h3 class="text-gray-900 dark:text-white text-xl font-bold">Páginas Creadas por IA (OpenWebUI)</h3>
+                                    <button class="flex min-w-[84px] max-w-[480px] ... bg-blue-500/90 dark:bg-blue-600/90 text-white gap-2 text-sm font-bold">
+                                        <span class="material-symbols-outlined">auto_awesome</span>
+                                        <span class="truncate">Generar Nueva Página</span>
+                                    </button>
+                                </div>
+                                <!-- Tabla de páginas IA -->
+                                <div class="overflow-x-auto">
+                                    <table class="w-full text-left">
+                                        <thead>
+                                            <tr class="bg-light-highlight/20 dark:bg-dark-highlight/20">
+                                                <th class="px-4 py-3 ...">Nombre/Título</th>
+                                                <th class="px-4 py-3 ...">Sitio Web Asociado</th>
+                                                <th class="px-4 py-3 ...">Fecha de Creación</th>
+                                                <th class="px-4 py-3 ...">Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- Filas de páginas generadas -->
+                                            <tr class="border-t border-light-shadow/30 dark:border-dark-highlight/50">
+                                                <td class="h-auto px-4 py-3 ...">Landing Page V1</td>
+                                                <td class="h-auto px-4 py-3 ...">Sitio Corporativo</td>
+                                                <td class="h-auto px-4 py-3 ...">2023-10-26</td>
+                                                <td class="h-auto px-4 py-3">
+                                                    <div class="flex items-center flex-wrap gap-2">
+                                                        <!-- Acciones para la página IA -->
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <!-- ... Más filas ... -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Panel: Artefactos generados por IA -->
+                        <div class="p-4 sm:p-6">
+                            <div class="relative bg-gradient-to-br ... rounded-xl p-6 shadow-neumorphic-light dark:shadow-neumorphic-dark">
+                                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                                    <h3 class="text-gray-900 dark:text-white text-xl font-bold">Artefactos (generados por IA)</h3>
+                                    <button class="flex min-w-[84px] max-w-[480px] ... bg-blue-500/90 dark:bg-blue-600/90 text-white gap-2 text-sm font-bold">
+                                        <span class="material-symbols-outlined">auto_awesome</span>
+                                        <span class="truncate">Generar Nuevo Artefacto</span>
+                                    </button>
+                                </div>
+                                <!-- Tabla de artefactos -->
+                                <div class="overflow-x-auto">
+                                    <table class="w-full text-left">
+                                        <thead>
+                                            <tr class="bg-light-highlight/20 dark:bg-dark-highlight/20">
+                                                <th class="px-4 py-3 ...">Nombre/Título</th>
+                                                <th class="px-4 py-3 ...">Sitio Web Asociado</th>
+                                                <th class="px-4 py-3 ...">Fecha de Creación</th>
+                                                <th class="px-4 py-3 ...">Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="border-t border-light-shadow/30 dark:border-dark-highlight/50">
+                                                <td class="h-auto px-4 py-3 ...">script_deploy_v2.sh</td>
+                                                <td class="h-auto px-4 py-3 ...">Sitio Corporativo</td>
+                                                <td class="h-auto px-4 py-3 ...">2023-10-24</td>
+                                                <td class="h-auto px-4 py-3">
+                                                    <div class="flex items-center flex-wrap gap-2">
+                                                        <!-- Acciones para cada artefacto -->
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <!-- ... Más filas ... -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Panel: Estado de Workflows (n8n) -->
+                        <div class="p-4 sm:p-6">
+                            <div class="relative bg-gradient-to-br ... rounded-xl p-6 shadow-neumorphic-light dark:shadow-neumorphic-dark">
+                                <h3 class="text-gray-900 dark:text-white text-xl font-bold mb-6">Estado de Workflows (n8n)</h3>
+                                <div class="overflow-x-auto">
+                                    <table class="w-full text-left">
+                                        <thead>
+                                            <tr class="bg-light-highlight/20 dark:bg-dark-highlight/20">
+                                                <th class="px-4 py-3 ...">Nombre del Workflow</th>
+                                                <th class="px-4 py-3 ...">Sitio Web Asociado</th>
+                                                <th class="px-4 py-3 ...">Estado</th>
+                                                <th class="px-4 py-3 ...">Última Ejecución</th>
+                                                <th class="px-4 py-3 ...">Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="border-t border-light-shadow/30 dark:border-dark-highlight/50">
+                                                <td class="px-4 py-3 ...">Backup Diario de Sitios</td>
+                                                <td class="px-4 py-3 ...">Todos</td>
+                                                <td class="px-4 py-3 text-sm">
+                                                    <span class="inline-flex items-center gap-1.5 rounded-full bg-success/10 px-3 py-1 text-xs font-medium text-success">
+                                                        <span class="size-2 rounded-full bg-success"></span>Activo
+                                                    </span>
+                                                </td>
+                                                <td class="px-4 py-3 ...">2023-10-27 04:00</td>
+                                                <td class="px-4 py-3 text-sm">
+                                                    <div class="flex items-center flex-wrap gap-2">
+                                                        <!-- Acciones para cada workflow -->
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <!-- ... Más filas ... -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+                    <!-- Pie de página -->
+                    <footer class="mt-8 border-t border-light-shadow/30 dark:border-dark-highlight/50 px-4 sm:px-6 py-4">
+                        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
+                            <p>Hecho por Luis Manuel Fajardo Rivera</p>
+                            <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-gradient-to-br from-background-light to-white/50 dark:from-background-dark dark:to-dark-highlight shadow-neumorphic-light dark:shadow-neumorphic-dark">
+                                <span class="material-symbols-outlined text-base">dns</span>
+                                <span>entorno local</span>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Script para actualizar la hora actual en el panel de usuario -->
+<script>
+    function updateTime() {
+        const timeElement = document.getElementById('current-time');
+        if (timeElement) {
+            const now = new Date();
+            timeElement.textContent = now.toLocaleTimeString('es-ES', {
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+    }
+    updateTime();
+    setInterval(updateTime, 60000); // Actualiza cada minuto
+</script>
+</body>
+</html>
