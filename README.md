@@ -1,43 +1,81 @@
-# WebAdmin AI Dashboard
+# ✨ WebAdmin AI Dashboard: Neumorphic Edition ✨
 
-Welcome to the WebAdmin AI Dashboard, a modern, single-page web interface for managing servers, databases, and AI-powered services. This dashboard features a clean, visually appealing **Neumorphic design** with both light and dark modes, providing an intuitive user experience for monitoring and managing your web hosting environment.
+¡Bienvenido al futuro de la administración web! El **WebAdmin AI Dashboard** es una interfaz de una sola página, elegante y moderna, diseñada para simplificar la gestión de servidores, bases de datos y servicios de IA. Con un impresionante diseño **Neumórfico**, temas dinámicos y animaciones sutiles, este dashboard no solo es funcional, sino también un placer para la vista.
 
-## Preview
-*A preview of the new Neumorphic design will be added here shortly.*
+![Dashboard Preview](images/screenshot.png)
 
-## Key Features
+## 🚀 ¿Por qué te encantará este Dashboard?
 
-*   **Neumorphic Design:** A modern and stylish interface with a soft, extruded plastic look.
-*   **Dynamic Light/Dark Theme:** Seamlessly switch between light and dark modes to suit your preference.
-*   **At-a-Glance Stats:** Four prominent cards display key metrics: Active Websites, Databases, Workflows, and Active Users.
-*   **Subtle Animations:** Smooth, subtle animations on interactive elements enhance the user experience.
-*   **Resource Monitoring:** Keep an eye on real-time usage of RAM, CPU, SSD, and Ethernet.
-*   **Website Management:** Easily add, view, edit, and download your websites.
-*   **Database Control:** Manage your databases with tools for backups, queries, and more.
-*   **AI Service Integration:** Monitor the status of your AI models (RAG and Finetuning) and generate AI-powered web pages.
-*   **Workflow Automation:** View and manage automated workflows for tasks like backups and deployments.
-*   **Multi-language Support:** The dashboard is available in both English and Spanish.
+Este proyecto va más allá de un simple panel de administración. Es una demostración de cómo las interfaces modernas pueden ser tanto hermosas como funcionales.
 
-## How to Use
+*   **🎨 Diseño Neumórfico de Vanguardia:** Una estética suave y limpia que hace que los elementos de la interfaz parezcan salir de la pantalla.
+*   **🌗 Tema Dinámico (Claro y Oscuro):** Cambia entre modos de luz y oscuridad con un solo clic para adaptarse a tu entorno y preferencias.
+*   **ანი Animaciones Sutiles:** Interacciones fluidas y animaciones que mejoran la experiencia de usuario sin ser intrusivas.
+*   **📊 Visualización de Datos Clave:** Tarjetas de estadísticas que ofrecen una visión general instantánea de tus servicios más importantes.
+*   **🌐 Soporte Multi-idioma:** Preparado para una audiencia global con soporte para inglés y español desde el primer momento.
+*   **🔌 Sin Dependencias:** Un proyecto puro de HTML, CSS (Tailwind) y JavaScript que funciona directamente en tu navegador sin necesidad de instalaciones complicadas.
 
-1.  Clone this repository to your local machine.
-2.  Open the `index.html` file in your web browser.
+## 📋 Características Principales
 
-No special setup or dependencies are required. All necessary styles and scripts are loaded from a CDN.
+*   **Gestión de Sitios Web:** Administra tus sitios web con opciones para añadir, editar y ver.
+*   **Control de Bases de Datos:** Supervisa y gestiona tus bases de datos conectadas.
+*   **Integración con IA:** Monitoriza el estado de tus modelos de IA (RAG y Finetuning).
+*   **Automatización de Workflows:** Visualiza y gestiona flujos de trabajo automatizados.
+*   **Y mucho más...**
 
-## File Structure
+## 🏁 Cómo Empezar (Getting Started)
 
-*   `index.html`: The main HTML file containing the dashboard's structure, styling, and all JavaScript logic.
-*   `README.md`: This file, providing an overview of the project.
-*   `images/`: Directory intended for storing image assets, like the dashboard preview.
+¡Poner en marcha este dashboard es increíblemente fácil! Sigue estos sencillos pasos:
 
-## Customization
+### 1. Clona el Repositorio
 
-You can easily customize the dashboard by editing the `index.html` file.
+Abre tu terminal y clona este repositorio en tu máquina local usando el siguiente comando:
 
-*   **Styling:** The dashboard uses **Tailwind CSS**. The configuration is located in a `<script>` tag in the `<head>` of the document. You can modify this to change colors, fonts, and other visual elements.
-*   **Functionality:** All JavaScript, including the theme-switching and multi-language logic, is contained within a `<script>` tag at the end of the `<body>`.
-*   **Multi-language Support:** To add a new language, you'll need to:
-    1.  Add a new language option to the language selector dropdown in the header.
-    2.  Add a new set of translations to the `translations` object in the JavaScript code.
-    3.  Use the `data-translate` attribute on any HTML elements that require translation.
+```bash
+git clone https://github.com/tu-usuario/WebAdmin-AI-Dashboard.git
+```
+
+### 2. Abre el Archivo
+
+Navega hasta el directorio del proyecto y simplemente abre el archivo `code.html` en tu navegador web preferido.
+
+```bash
+cd WebAdmin-AI-Dashboard
+# Si estás en macOS
+open code.html
+# Si estás en Windows
+start code.html
+# Si estás en Linux
+xdg-open code.html
+```
+
+¡Y eso es todo! No se requiere ningún servidor de desarrollo, compilación ni instalación de paquetes.
+
+## 📄 Documentación del Código
+
+La claridad y la mantenibilidad son clave. Por eso, todo el código JavaScript dentro de `code.html` está documentado siguiendo el estándar **JSDoc**.
+
+*   **¿Qué significa esto?** Cada función tiene un bloque de comentarios que explica:
+    *   **El propósito** de la función.
+    *   **Los parámetros** que acepta (`@param`).
+    *   **El valor que devuelve** (`@returns`).
+
+Esto hace que sea increíblemente fácil de entender, modificar y ampliar el código.
+
+```javascript
+/**
+ * @description Changes the language of the dashboard.
+ *              This function finds all elements with the 'data-translate' attribute
+ *              and replaces their text content with the translation for the selected
+ *              language.
+ * @param {string} lang The language code to switch to (e.g., 'es', 'en').
+ * @returns {void}
+ */
+function changeLanguage(lang) {
+    // ... código de la función
+}
+```
+
+---
+
+¡Gracias por revisar el WebAdmin AI Dashboard! Siéntete libre de contribuir, hacer un fork o simplemente inspirarte en el diseño.
