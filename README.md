@@ -3,6 +3,8 @@
 ¡Bienvenido al futuro de la administración web! El **WebAdmin AI Dashboard** es una interfaz de una sola página, elegante y moderna, diseñada para simplificar la gestión de servidores, bases de datos y servicios de IA. Con un impresionante diseño **Neumórfico**, temas dinámicos y animaciones sutiles, este dashboard no solo es funcional, sino también un placer para la vista.
 
 ![Dashboard Preview](images/screenshot.png)
+![Dashboard Preview](images/screen.png)
+
 
 ## 🚀 ¿Por qué te encantará este Dashboard?
 
