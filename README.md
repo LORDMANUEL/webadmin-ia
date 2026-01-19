@@ -34,7 +34,7 @@ Este proyecto va más allá de un simple panel de administración. Es una demost
 Abre tu terminal y clona este repositorio en tu máquina local usando el siguiente comando:
 
 ```bash
-git clone https://github.com/tu-usuario/WebAdmin-AI-Dashboard.git
+git clone https://github.com/LORDMANUEL/WebAdmin-AI-Dashboard.git
 ```
 
 ### 2. Abre el Archivo
